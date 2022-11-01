@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <script>
+            // // alert('hi');
+            // console.log('hello');
+            // var a;
+            // console.log(a);
+            // var a = '1';
+            // console.log(a);
+
+            // let b;
+            // console.log(b);
+            // b = 1;
+
+            // console.log(a+"반갑습니다")
+            // console.log(a+b)
+
+            // console.log(parseInt(a)+b);
+
+            // function sesac() {
+            //     console.log("sesac hi!");
+            // }
+            // sesac();
+
+            // function sesac2( abc, test, a ) {
+            //     alert(abc + " "+ test+"hello");
+            // }
+            // sesac2("홍길동","", "13");  // 파라미터 순서, 개수에 맞춰서 변수 선언해야 함
+            // sesac2(a); // a=1, abc=1이 됨
+            
+            // function init() {
+            //     console.log("init");
+            // }
+
+            // function parameter1(a) {
+            //     console.log(a);
+            // }
+
+            // function parameter2(a,b) {
+            //     console.log(a + " "+ b);
+            // }
+            // function parameter3(a,b,c) {
+            //     console.log("a : " + a);
+            //     console.log("b : " + b);
+            //     console.log("c : " + c);
+            // }
+
+            // init(); // 파라미터, 값 없는 동작만 하는 함수
+            // parameter1(); // 값이 없음 = 전달이 안됨
+            // parameter1(10);
+            // parameter2(5,3);
+            // parameter3(1,2,3);
+            // var variable = "hi"; // 변수 만들고 변수에 값 전달
+            // parameter3(variable,variable,variable); // 값 hi를 a,b,c가 받음
+            // parameter3(variable,variable);// 값 hi를 a,b가 받음
+            // parameter3(variable);// 값 hi를 a가 받음
+
+            var a = prompt("숫자를 입력하세요.");
+            if (a > 10) {
+                console.log( "a > 10 ");
+            }
+                if (a>8) {
+                    console.log(" a > 8 ");
+                }
+                else {
+                    console.log(" a < 8");
+                }
+                switch(a) {
+                    case 8:
+                        console.log( "a 8!!");
+                    break;
+                }
+
+            else if (a > 5) {
+                console.log("a > 5");
+            }
+            else if (a > 0) {
+                console.log("a > 0");
+            }
+            else {
+                console.log("no!")
+            } // 개수는 상관 없으나 if - else if - else 순서는 꼭 지켜야 함
+           
+            // console.log(typeof('문자'));
+            // console.log(typeof(245));
+            // console.log(typeof(function() {}));
+            // console.log(typeof(true));
+            // console.log(typeof({});
+            // console.log(typeof([]));
+            // console.log(typeof(NaN));
+            // console.log(typeof(null));
+
+            if (5 > 3) {
+
+            } else if (3 < 2) { // 여러번 걸 수 있음
+
+            } else { // 조건이 없기 때문에 소괄호 없음. 위 모든 조건이 거짓일 경우 실행
+
+            } // 셋 중 하나만 실행 될 것. if에서 참이면 실행 후 끝 / 거짓이면 다음조건 넘어감. 또 거짓이면 다음조건 넘어감.
+
+            console.log("0")
+
+            for (var i = 0; i < 10; i ++) { // i ++ 는 i = i + 1 과 같음
+                console.log( "i : " + i);
+            }
+
+            var j = 0;
+            while ( j < 10 ){
+                console.log( "j : " + j);
+                j = j + 1;
+            }
+        </script>
+    </head>
+</html>

@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script>
+            
+            var a = 0;
+            for (var n = 1 ; n < 100; n++) {
+                if (n%2 == 0) {    
+                    a = a + n;
+                }    
+            }
+
+            var b = 0;
+            for (var n = 1 ; n < 100; n++) {
+                if (n%3 == 0) {     
+                    b = b + n;
+                }    
+            }
+
+            var c = 0;
+            for (var n = 1 ; n < 100; n++) {
+                if (n%6 == 0) {     
+                    c = c + n;
+                }    
+            }
+
+            console.log(a+b-c);
+        </script>
+    </head>
+</html>

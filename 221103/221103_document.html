@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>doc</title>
+    <script>
+        console.log(document.documentElement);//문서의 모든 요소
+        console.log(document.head);//head태그
+        console.log(document.title);//title안에 있는 거
+        console.log(document.URL);//접속해있는 url
+        console.log(document.domain);//접속해있는 도메인 : http프로토콜 빼고
+
+
+    </script>
+</head>
+<body>
+    <img src="./hamster.jpg" width="100" height="100">
+    <img src="./hamster.jpg" width="100" height="100">
+    <img src="./hamster.jpg" width="100" height="100">
+    <div id = "div1">
+        <input type="text" id="input1" value="입력값">
+        <p class="css1">p1</p>
+        <p class="css1">p2</p>
+        <div>
+            <p class="css1">p3</p>
+        </div>
+        <button type="button" onclick="getData();">input 버튼</button>
+        <button type="button" onclick="getData2();">p태그 버튼</button>
+    </div>
+
+    <script>
+        console.log(document.getElementById("input1"));
+        console.log(document.getElementsByClassName("css1"));
+        console.log(document.getElementsByClassName("css1")[0]);
+        console.log(document.getElementsByTagName("img"));
+        
+        console.log(document.querySelector("#input1"));
+        console.log(document.querySelector(".css1"));
+        console.log(document.querySelectorAll(".css1"));
+        console.log(document.querySelectorAll(".css1")[1]);
+        
+        function getData() {
+        var input = document.getElementById("input1");
+        console.log(input.value);
+        }
+        //1. 버튼을 누른다
+        //2. getData()실행
+        //3. id가 input1인 요소를 찾아서 input변수에 넣기
+        //4. 선택된 요소의 value를 console에 출력
+
+        function getData2() {
+
+        var p1 = document.getElementsByClassName("css1")[0];
+        console.log(p1);
+        console.log(p1.text);
+        console.log(p1.html);
+        console.log(p1.innerText);
+        console.log(p1.innerHTML);
+
+        // p1.innerText = "p태그입니다."; // innerText로 태그 내 텍스트 값 변경 가능
+        p1.innerHTML = "<strong>p태그입니다.</strong>"; //innerHTML은 <strong></strong>을 글자가 아닌 태그로 인식
+        }
+    </script>
+</body>
+</html>

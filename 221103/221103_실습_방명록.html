@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <p>방명록입니다.</p>
+    <div><strong>작성자</strong><input type=text id="name"></div>
+    <div><strong>내용</strong><input type=text id="content"></div>
+    <button type="button" onclick="addRow()">작성</button>
+    <table border="1" cellpadding="10" cellspacing="1">
+        <tr>
+            <td><strong>번호</strong></td>
+            <td><strong>작성자</strong></td>
+            <td><strong>내용</strong></td>
+            <td><strong>작성일</strong></td>
+        </tr>
+    </table>
+    
+    <script>
+            var tb = document.querySelector("table");
+            var tr = document.querySelector("tr");
+            var td = document.querySelector("td");
+
+        function addRow() {
+            var a = document.querySelectorAll("tr").length;
+            var no = String(a)
+            var name = document.querySelector("#name").value;
+            var content = document.querySelector("#content").value;
+            var date = new Date();
+            var dateOfWrite = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
+            + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+            
+            var ntr = document.createElement("tr")
+            var ntd = document.createElement("td")
+            ntd.innerText = no;
+            var ntd2 = document.createElement("td")
+            ntd2.innerText = name;
+            var ntd3 = document.createElement("td")
+            ntd3.innerText = content;
+            var ntd4 = document.createElement("td")
+            ntd4.innerText = dateOfWrite;
+
+
+            tb.appendChild(ntr);
+            ntr.append(ntd, ntd2, ntd3, ntd4);
+            // ntr.append(ntd.innerText=no,ntd.innerText=name);
+            // ntr.append(ntd.innerText=name);
+            // ntr.append(ntd.innerText=content);
+            // ntr.append(ntd.innerText=dateOfWrite);
+        }
+    </script>
+</body>
+</html>

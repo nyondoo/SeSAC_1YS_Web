@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script>
+        // switch 조건문
+        // const input = Number(prompt('숫자를 입력하세요.','숫자'));
+
+        // switch (input % 2) {
+        //     case 0:
+        //         alert('짝수입니다.');
+        //         break;
+        //     case 1:
+        //         alert('홀수입니다.');
+        //         break;
+        //     default:
+        //         alert('숫자가 아닙니다.');
+        //         break; 
+        // }
+
+        // if 조건문을 switch 조건문으로 
+        // const date = new Date()
+        // const hour = date.getHours()
+
+        // switch (true) {
+        //     case hour < 11:
+        //         alert('아침 먹을 시간입니다.');
+        //         break;
+        //     case hour < 15:
+        //         alert('점심 먹을 시간입니다.');
+        //         break;
+        //     default:
+        //         alert('저녁 먹을 시간입니다.');
+        //         break;
+        // }
+
+        // 조건부 연산자. 유일한 삼항 연산자임.
+        // const input = prompt('숫자를 입력하세요.','');
+        // const number = Number(input);
+
+        // const result = (number >= 0) ? '0 이상의 숫자입니다.' : '0보다 작은 숫자입니다.';
+        // alert(result);
+
+        //짧은 조건문
+        //||는 좌변이 참일 경우 우변을 실행하지 않음. 좌변이 거짓일 때 우변을 실행함.
+        //&& 좌변이 거짓일 때 항상 거짓임.
+
+        // const 입력 = prompt('정수를 입력해주세요.','');
+        // const 끝자리 = 입력[입력.length - 1];
+
+        // if (끝자리 === "0" ||
+        // 끝자리 === "2" ||
+        // 끝자리 === "4" ||
+        // 끝자리 === "6" ||
+        // 끝자리 === "8") {
+        //     alert(`${입력}은 짝수입니다.`);
+        // } else {
+        //     alert(`${입력}은 홀수입니다.`);
+        // }
+
+        // const 입력 = prompt('정수를 입력해주세요.','');
+        // const 숫자 = Number(입력);
+
+        // if (숫자 % 2 === 0) {
+        //     alert(`${입력}은 짝수입니다.`);
+        // } else {
+        //     alert(`${입력}은 홀수입니다.`);
+        // }
+
+        const score = Number(prompt('학점을 입력하세요.',''));
+
+        if (score === 4.5) {
+            alert('신');
+        }
+        else if (score >= 4.2) {
+            alert('교수님의 사랑');
+        }
+        else if (score >= 3.5) {
+            alert('현 체제의 수호자');
+        }
+        else if (score >= 2.8) {
+            alert('일반인');
+        }
+        else if (score >= 2.3) {
+            alert('일탈을 꿈꾸는 소시민');
+        }
+        else if (score >= 1.75) {
+            alert('오락문화의 선구자');
+        }
+        else if (score >= 1.0) {
+            alert('불가촉천민');
+        }
+        else if (score >= 0.5) {
+            alert('자벌레');
+        }
+        else if (score > 0) {
+            alert('플랑크톤');
+        }
+        else {alert('시대를 앞서가는 혁명의 씨앗');};
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -13,56 +13,27 @@
     </div>
 
     <div>
-        <span><input type="checkbox" id="pick" onclick="price()"> 피클(800원)</span>
-        <span><input type="checkbox" id="chills" onclick="price()"> 칠리 소스(300원)</span>
-        <span><input type="checkbox" id="dips" onclick="price()"> 디핑 소스(200원)</span>
-        <span><input type="checkbox" id="cheese" onclick="price()"> 치즈스틱(4개, 4800원)</span>
-        <span><input type="checkbox" id="corn" onclick="price()"> 콘 샐러드(2400원)</span>
+        <span><input type="checkbox"  value="800"  onclick="price()" id="pk"> 피클(800원)</span>
+        <span><input type="checkbox"  value="300" onclick="price()" id="ch"> 칠리 소스(300원)</span>
+        <span><input type="checkbox"  value="200" onclick="price()" id="dp"> 디핑 소스(200원)</span>
+        <span><input type="checkbox"  value="4800" onclick="price()" id="cse"> 치즈스틱(4개, 4800원)</span>
+        <span><input type="checkbox"  value="2400" onclick="price()" id="cn"> 콘 샐러드(2400원)</span>
      </div>
 
     <div id="price"><strong></strong></div>
 
     <script>
-        //피클
-        var pk = {
-            value: document.getElementById("pick").value,
-            price: 800,
-        }
-        //칠리소스
-        var ch = {
-            value: document.getElementById("chills").value,
-            price: 300
-        }
-        //디핑소스
-        var dp = {
-            value: document.getElementById("dips").value,
-            price: 200
-        }
-        //치즈스틱
-        var cse = {
-            value: document.getElementById("cheese").value,
-            price: 4800
-        }
-        //콘샐러드
-        var cn = {
-            value: document.getElementById("corn").value,
-            price: 2400
-        }
+        const ids = ['pk', 'ch', 'dp', 'cse', 'cn']
 
-        //클릭 할 때마다 전체을 훑어야 함
-        //value가 true인 변수의 price값을 더할 것
-        //1. value가 true인 변수를 찾는다
-        //2. 각 변수의 price의 값을 찾는다
-        // 3. 더한다.
-
-        function price () {
-            calc = 0;
-            pk[value] && calc == calc + Number(pk[price]);
-            ch[value] && calc == calc + Number(ch[price]);
-            dp[value] && calc == calc + Number(dp[price]);
-            cse[value] && calc == calc + Number(cse[price]);
-            cn[value] && calc == calc + Number(cn[price]);
-            document.getElementById("price").innerText = String(clac);
+        function price() {
+            let output = 0
+            for (let i = 0; i < ids.length; i++) {
+                id = document.getElementById(ids[i])
+                if (id.checked == true) {
+                    output += Number(id.value);
+                }
+            }
+        document.getElementById("price").innerText = output;
         }
     </script>
 

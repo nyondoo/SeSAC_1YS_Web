@@ -2,16 +2,6 @@
 <html>
 <head>
     <title>간단 계산기</title>
-</head>
-<body>
-    <div>값1: <input type="number" id="value1" class="ip"></div>
-    <div>값2: <input type="number" id="value2" class="ip"></div>
-    <div>연산자: <input type="text" id="operator" class="ip"></div>
-    <div>결과: <input type="text" id="result" class="ip"></div>
-
-    <button type="button" onclick="Calc()">계산하기</button>
-    <button type="button" onclick="Reset()">초기화</button>
-
     <script>
         var vl1 = document.getElementById("value1");
         var vl2 = document.getElementById("value2");
@@ -47,6 +37,15 @@
             
         }
     </script>
+</head>
+<body>
+    <div>값1: <input type="number" id="value1" class="ip"></div>
+    <div>값2: <input type="number" id="value2" class="ip"></div>
+    <div>연산자: <input type="text" id="operator" class="ip"></div>
+    <div>결과: <input type="text" id="result" class="ip"></div>
+
+    <button type="button" onclick="Calc()">계산하기</button>
+    <button type="button" onclick="Reset()">초기화</button>
 
 </body>
 </html>

@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <script>
+            function calculate() {
+                var v1 = document.getElementById("val1").value;
+                var v2 = document.getElementById("val2").value;
+                var op = document.getElementById("op").value;
+                var result = document.getElementById("result");
+                var n = 0;
+
+                if ( op == "+" ) {
+                    n = parseInt(v1) + parseInt(v2);
+                } else if ( op == "-" ) {
+                    n = parseInt(v1) - parseInt(v2);
+                } else if ( op == "*" ) {
+                    n = parseInt(v1) * parseInt(v2);
+                } else {
+                    n = parseInt(v1) / parseInt(v2);
+                }
+
+                result.value = n;
+            }
+            function refresh() {
+                document.getElementById("val1").value = "";
+                document.getElementById("val2").value = "";
+                document.getElementById("op").value = "";
+                document.getElementById("result").value = "";
+            }
+        </script>
+    </head>
+    <body>
+        값 1 : <input type="text" id="val1"> <br>
+        값 2 : <input type="text" id="val2"> <br>
+        연산자 : <input type="text" id="op"> <br>
+        결과 : <input type="text" id="result"> <br>
+
+        <button type="button" onclick="calculate()">계산하기</button>
+        <button type="button" onclick="refresh()">초기화</button>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="./jquery-ui-1.13.2/jquery-ui.js"></script>
+    <link href="./jquery-1.13.2/jquery-ui.css">
+    <title>jquery_calss_switch</title>
+
+    <style>
+    div { width: 100px;height: 100px;}
+    .first {background-color: red;}
+    .second {background-color: yellow;}
+    .third {background-color: green;}
+    .sizeup {font-size: 30px;}
+    </style>
+    
+    <script>
+        function second() {
+            $("div").switchClass("first","second", 2000);//2초동안 변함
+        }
+        function sizeup() {
+            $("div").switchClass("second","sizeup", 1000);
+        }
+        function third() {
+            $("div").switchClass("sizeup", "third", 1000);
+        }
+        function first() {
+            $("div").switchClass("third", "first", 1000);
+        }
+    </script>
+</head>
+<body>
+    <div class="first">div</div>
+    <button type="button" onclick="second()">first -> second</button>
+    <button type="button" onclick="sizeup()">second -> sizeup</button>
+    <button type="button" onclick="third()">sizeup -> third</button>
+    <button type="button" onclick="first()">third -> first</button>
+</body>
+</html>

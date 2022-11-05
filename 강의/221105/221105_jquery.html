@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <script>
+        // 값 출력,설정
+        function getData() {
+            var value1 = document.getElementById("input1").value;
+            console.log(value1);
+
+            var value2 = $("input").val();
+            console.log(value2);
+        }
+        function setData() {
+            document.getElementById("input1").value = "hi"; // 좌항에 우항값을 넣겠다
+            $("input1").val("hello");
+        }
+
+        function setStyle1() {
+            var p = document.querySelector("#p1");
+            p.style = "background-color: yellow; color: blue";
+        }
+        function setStyle2() {
+            $("#p1").css("background-color", "green");// .css(속성,값)
+        }
+        function setStyle3() {
+            $("#p1").attr("style","background-color: blue; color: white");
+        }
+
+        //요소 변경
+        function changeText() {
+            console.log($("#p1").text());
+            $("#p1").text("글자변경");
+        }
+        function changeHTML() {
+            console.log($("#p1").html());
+            $("#p1").html("<strong>굵은 글자 변경</strong>");
+        }
+
+        //요소 추가
+        function append1() {
+            document.querySelector("#p1").append("<h2>h2태그입니다.</h2>"); //문자열이 됨
+            $("#p1").append("<h3>h3태그입니다.</h3>"); // html요소로 인식
+        }
+
+        function append() {
+            $("#ul").append("<li class='append'>append</li>");
+        } // 자식중 맨 뒤 추가
+        function prepend() {
+            $("#ul").prepend("<li>prepend</li>");
+        }// 맨 앞에 추가
+        function before() {
+            $("#li1").before("<li>before</li>");
+        }// 내가 선택한 형제의 바로 앞으로
+        function after() {
+            $("#li1").after("<li>after</li>");
+        }// 내가 선택한 형제의 바로 뒤로
+
+        //요소 삭제
+        function remove1() {
+            $("li").remove(); //선택자가 해당하는 모든 요소가 지워진다. ex. class 인경우 해당 클래스를 가진 요소들만 지워진다
+        }//자기 자신 삭제
+        function empty() {
+            $("#ul").empty();
+        }//선택요소의 부모 아래 모든 자식 삭제. 아예 비우는 것
+
+        //요소 선택 탐색
+        function parent() {
+            console.log( $("#li1").parent() );//=ul
+            console.log( $("#li1").parent().parent());//=body
+            console.log( $("#li1").parent().prev());
+            console.log( $("#li1").parent().next());
+            $("#li1").parent().append("<li>parentAppend</li>");
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" onclick="parent()">parent</button>
+   <ul id="ul">
+    <li id="li1">기준</li>
+   </ul>
+   <button type="button" onclick="remove1()">remove</button>
+   <button type="button" onclick="empty()">empty</button>
+   <button type="button" onclick="append()">append</button>
+   <button type="button" onclick="prepend()">prepend</button>
+   <button type="button" onclick="before()">before</button>
+   <button type="button" onclick="after()">after</button>
+
+   <p id="p1">p태그입니다.</p>
+    <button type="button" onclick="append1()">요소추가</button>
+
+   <button type="button" onclick="setStyle1()">javascript로 바꾸기</button>
+   <button type="button" onclick="setStyle2()">jquery로 바꾸기</button>
+   <button type="button" onclick="setStyle3()">jquery로 속성값 한번에 바꾸기</button>
+    <br>
+    <button type="button" onclick="changeText()">text변경</button>
+    <button type="button" onclick="changeHTML()">html변경</button>
+    <hr>
+    <input type="text" id="input1">
+   <button type="button" onclick="getData()">값 가져오기</button>
+   <button type="button" onclick="setData()">값 설정하기</button>
+</body>
+</html>

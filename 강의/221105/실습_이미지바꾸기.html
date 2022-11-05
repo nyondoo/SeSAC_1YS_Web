@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="./jquery-ui-1.13.2/jquery-ui.js"></script>
+    <link href="./jquery-1.13.2/jquery-ui.css">
+    <title>jquery_image_switch</title>
+
+    <style>
+
+    </style>
+    <script>
+        function apple() {
+            $('img').attr('src','apple.jpg');
+        }
+        function banana() {
+            $("img").attr('src',"banana.png")
+        }
+        function grape() {
+            $("img").attr('src',"grape.jpg")
+        }
+        function peach() {
+            $("img").attr('src',"peach.jpg")
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <img src="./question_mark.jpg" style="width: 200px; height: 200px;">
+    </div>
+    <button type="button" onclick="apple()">사과</button>
+    <button type="button" onclick="banana()">바나나</button>
+    <button type="button" onclick="grape()">포도</button>
+    <button type="button" onclick="peach()">복숭아</button>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery클래스 조작</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <style>
+        .class {
+            background-color: pink;
+            font-weight: bold;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <script>
+        function addClass() {
+            $("div").addClass("class");
+        }
+        function removeClass() {
+            $("div").removeClass("class");
+        }
+        function hasClass() {
+            $("div").hasClass();
+            console.log( $("div").hasClass("class") ); //선택자 클래스를 가지고 있는지 확인. 불 값
+        }
+        function toggleClass() {
+            $("div").toggleClass("class");//??
+        }
+    </script>
+</head>
+<body>
+    <div>
+        div입니다.
+    </div>
+    <button type="button" onclick="addClass()">addClass</button>
+    <button type="button" onclick="removeClass()">removeClass</button>
+    <button type="button" onclick="hasClass()">hasClass</button>
+    <button type="button" onclick="toggleClass()">toggleClass</button>
+</body>
+</html>

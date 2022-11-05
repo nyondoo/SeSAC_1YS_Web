@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <script>  
+            var price = 24000;
+            function calculate( obj ) {
+                if ( obj.checked ) price = price + Number(obj.value);
+                else price = price - Number(obj.value);
+
+                var total = document.querySelector("#total");
+                total.innerText = price + "원";
+            }      
+        </script>
+    </head>
+    <body>
+        <h2>피자 주문</h2>
+        <fieldset>
+            <legend>사이즈</legend>
+            Large - 24000원
+        </fieldset>
+        <fieldset>
+            <legend>추가 주문</legend>
+            <p>
+                <input type="checkbox" class="checkbox" value="800" id="피클" onclick="calculate(this);"> 
+                <label for="피클">피클(800원)</label>
+            </p>
+            <p>
+                <input type="checkbox" class="checkbox" value="300" id="칠리" onclick="calculate(this);">
+                <label for="칠리">칠리 소스(300원)</label>
+            </p>
+            <input type="checkbox" class="checkbox" value="200" onclick="calculate(this);"> 디핑 소스(200원) <br>
+            <input type="checkbox" class="checkbox" value="4800" onclick="calculate(this);"> 치즈스틱(4개, 4800원) <br>
+            <input type="checkbox" class="checkbox" value="2400" onclick="calculate(this);"> 콘 샐러드(2400원) <br>
+        </fieldset>
+        <fieldset>
+            <legend>합계</legend>
+            <p id="total"></p>
+        </fieldset>
+    </body>
+</html>

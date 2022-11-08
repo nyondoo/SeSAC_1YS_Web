@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="./jquery-ui-1.13.2/jquery-ui.js"></script>
+    <link href="./jquery-1.13.2/jquery-ui.css">
+</head>
+<body>
+    body태그
+    <input type="text" id="input1">
+    <p id="alert"></p>
+    <div style="width: 100px; height:500px; background-color: yellow;" id="div1"></div>
+    <script>
+        //////키보드이벤트
+        $("#input1").keydown(function(e) {
+            console.log("key down : ", e.currentTarget.value);
+            $("#alert").text("글자가 입력됨, " + e.currentTarget.value); //-> 인풋창에 값이 없는 상태(keypress 이전)이기 때문에 한단계 느림
+            console.log(e);// 이 중 "key code"중요. 내가 누른 키가 무엇인지 보여줌
+            if (e.keyCode == 13) {
+                console.log("enter key"); 
+            }// keycode를 활용한 함수
+        });//키를 내린 것. 누르고 반영되지 않았을 때. input창에 뜨기 전
+        
+        $("#input1").keyup(function(e) {
+            console.log("input keyup");
+        });//키를 올린 것. 지울 때는 press없음. down, up만 발생
+        
+        //////마우스이벤트
+        $("#div1").click(function(e){ // 파라미터 e는 '이벤트 객체':이벤트 발생
+            console.log("div click");
+            console.log("e : ", e);
+        });//div1 클릭시 함수 실행
+        $("#div1").mouseover(function () {
+            console.log("div mouseover");
+        }); // div1에 마우스 올렸을 때 함수 실행. 마우스를 올렸을 때만 감지
+        $("#div1").hover(function () {
+            console.log("div hover")},
+            function() {
+                console.log("div hover2"); // 뗐을 때 함수
+        });// 올렸다가 뗐을 때까지 둘 다 감지. => hover이벤트에는 함수 두개를 실행시킬 수 있음.
+
+        //////스크롤이벤트
+        $(window).scroll(function() { // window를 매개변수로 줬기 때문에 윈도우(브라우저)에서 스크롤 시 발생
+            console.log("window scroll");
+        }) // 브라우저 혹은 특정 요소에서 스크롤 시 이벤트 발생
+
+        //////로딩이벤트 
+        //$(document).ready(function() {
+        //     alert("document.ready");
+        // });// body태그라는 말 나오기 전에 발생. 로딩이벤트=내용을 보이기 전에 행해지는 작업
+        // $(function() {
+        //     alert("ready");
+        // })// 축약버전
+
+
+
+    </script>
+</body>
+</html>

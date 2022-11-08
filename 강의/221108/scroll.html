@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+    .widget-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: black;
+        border-radius: 8px;
+      }
+
+      .widget {
+        width: 15%;
+        height: 50px;
+        flex: auto;
+        margin: 0.5rem;
+        background: white;
+        line-height: 50px;
+        text-align: center;
+        border-radius: 4px;
+        }
+
+        .header {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: black;
+        border-radius: 8px;
+      }
+
+      .contact-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: black;
+        border-radius: 8px;
+      }
+      .contact {
+        width: 15%;
+        height: 50px;
+        flex: auto;
+        margin: 0.5rem;
+        background: white;
+        line-height: 1.5;
+        text-align: center;
+        border-radius: 4px;
+        }
+
+        h1 {
+            position: absolute;
+            left : 20px;
+            top : 0px;
+        }
+        #phone {
+            display: inline;
+            position: absolute;
+            left : 20px;
+            top : 60px;
+        }
+
+        .circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+        }
+
+        #circle1 {
+            background: #FFD9E4;
+        }
+
+        #circle2 {
+            background: #FFE65A;
+        }
+
+        #circle3 {
+            background: #AAFA82;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        header
+        <h1 style="color: white">Nyondoo</h1>
+        <nav>
+            <ul class="contact-list">
+                <li class="contact"><a href="https://www.youtube.com/">YouTube</a></li>
+                <li class="contact"><a href="https://blog.naver.com/soogie1129">Blog</a></li>
+                <li class="contact"><a href="https://www.youtube.com/">Instagram</a></li>
+            </ul>
+        </nav>
+        <div id="phone" style="color: white;">contact: +82-10-6362-5261</div>
+    </header>
+    <hr>
+
+    <ul class="widget-list">
+       <li class="widget" href="">HTML</li>
+       <li class="widget">CSS</li>
+       <li class="widget">JavaScript</li>
+     </ul>
+
+    <hr>
+
+    <h2 id="learned">What I Learned...</h2>
+    <div class="circle" id="circle1"></div>
+    <div class="contents-box">
+        <h4>HTML</h4>
+        <p class="contents">
+        html is the language that build web page basically.
+    </p>
+    </div>
+
+    <div class="circle" id="circle2"></div>
+    <div class="contents-box">
+        <h4>CSS</h4>
+        <p class="contents">
+        Cascading Style Sheet is the language that give web page elements' design.
+    </p>
+    </div>
+
+    <div class="circle" id="circle3"></div>
+    <div class="contents-box">
+        <h4>JavaScript</h4>
+        <p class="contents">
+        JS is the language that can make web page alive.
+    </p>
+    </div>
+
+    
+    <script>
+      ScrollReveal().reveal('.header', { duration: 2000 });
+      ScrollReveal().reveal('.widget', { interval: 200 });
+      
+      ScrollReveal().reveal('#learned', { duration: 300 });
+      ScrollReveal().reveal('.contents-box', { interval: 700 });
+      
+    </script>
+  
+  </body>
+  </html>

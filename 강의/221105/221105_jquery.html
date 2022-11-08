@@ -73,8 +73,8 @@
         function parent() {
             console.log( $("#li1").parent() );//=ul
             console.log( $("#li1").parent().parent());//=body
-            console.log( $("#li1").parent().prev());
-            console.log( $("#li1").parent().next());
+            console.log( $("#li1").prev()); // button
+            console.log( $("#li1").parent().next()); // button
             $("#li1").parent().append("<li>parentAppend</li>");
         }
     </script>
@@ -82,8 +82,9 @@
 
 <body>
     <button type="button" onclick="parent()">parent</button>
-   <ul id="ul">
-    <li id="li1">기준</li>
+   <p></p>
+    <ul id="ul">
+        <li id="li1">기준</li>
    </ul>
    <button type="button" onclick="remove1()">remove</button>
    <button type="button" onclick="empty()">empty</button>

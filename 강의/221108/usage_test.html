@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src=".\jquery-ui-1.13.2\jquery-ui.js"></script>
+    <link href=".\jquery-1.13.2\jquery-ui.css">
+
+</head>
+<body>
+    <script>
+        let now = new Date();
+        let day = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+
+        //현재 년-월-일-요일 => 기준
+        console.log(now);
+        console.log(now.getFullYear());
+        console.log(now.getMonth()+1);
+        console.log(now.getDate());
+        console.log(day[now.getDay()]);
+
+        //기준 년월
+        let currentYear = now.getFullYear();
+        let currentMonth = now.getMonth();
+        let currentDate = now.getDate();
+
+        let startDay = new Date(currentYear, currentMonth, currentDate) // date=0 으로 하면 지난 달 마지막 날짜 date가 나옴
+        console.log(startDay); // 31 반환. 10/31
+        console.log(startDay.getDate());
+        console.log(startDay.getDate()-1);
+        console.log(new Date(currentYear, currentMonth,currentDate-1)) // 하루 전
+        console.log(new Date(currentYear, currentMonth-1,currentDate)) // 한 달 전
+    </script>
+</body>
+</html>

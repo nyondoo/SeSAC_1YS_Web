@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*테두리를 기준으로 크기를 정함*/
+ }
+
+body {
+    display: flex;
+}
+
+/*달력전체*/ 
+.calander {
+    width: 800px;
+    margin: 50px;
+}
+
+/*윗부분*/
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  /*년-월 선택*/
+.nav-calander {
+    display: flex;
+    font-weight: 900;
+    font-size: 40px;
+    color: lightslategrey;
+    cursor: pointer;
+}
+
+.year-month {
+    font-size: 35px;
+}
+
+   /*work 선택*/
+.work {
+    display: flex;
+}
+
+.choose-work {
+    display: flex;
+    font-size: 20px;
+}
+
+/*메인 부분*/
+.main {
+
+}
+
+/*요일*/
+.days {
+    display: flex;
+    margin: 25px 0 15px 0;
+}
+
+/*개별 요일*/
+.day {
+    width: calc( 100% / 7 );
+    text-align: center;
+}
+
+/*날짜*/
+.dates {
+    display: flex;
+    flex-flow: row wrap;
+    height: 500px;
+    border-top: 1px solid;
+    border-right: 1px solid;
+}
+
+.date {
+    width: calc( 100% / 7 );
+    text-align: right;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+}

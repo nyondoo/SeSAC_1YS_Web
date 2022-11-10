@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>달력</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src=".\jquery-ui-1.13.2\jquery-ui.js"></script>
+    <link href=".\jquery-1.13.2\jquery-ui.css">
+
+    <title>캘린더</title>
+    <link rel="stylesheet" href="style_calander.css">
+</head>
+<body>
+    <div class="calander"><!-----------------달력 전체 틀----------------->
+        <div class="header"> <!---------------윗부분--------------->
+            <div class="nav-calander">&lt;</div>
+            <div class="year-month"></div> <!--현재 연,월 표시 "2022년 11월" -->
+            <div class="nav-calander">&gt;</div>
+            
+            <div class="nav-work">
+                <select class="choose-work">
+                    <option>work1</option>
+                    <option>work2</option>
+                </select><!--알바 전환,표시-->
+            </div>
+        </div><!---------------윗부분 끝--------------->
+
+        <div class="main"> <!---------------메인 시작--------------->
+            <div class="days"> <!--요일-->
+                <div class="day">일</div>
+                <div class="day">월</div>
+                <div class="day">화</div>
+                <div class="day">수</div>
+                <div class="day">목</div>
+                <div class="day">금</div>
+                <div class="day">토</div>
+            </div>
+            <div class="dates"><!--날짜--></div>
+        </div> <!---------------메인 끝--------------->
+    </div><!-----------------달력 전체 끝----------------->
+
+    <!----------------------------------날짜 채우기----------------------------->
+    <script>
+        let now = new Date(); // 현재 날짜
+
+        let currentYear = now.getFullYear();
+        let currentMonth = now.getMonth();
+        let currentDate = now.getDate();
+
+        document.querySelector('.year-month').innerText = 
+        `${currentYear}년 ${currentMonth+1}월` // 상단 현재년월 표시
+
+        let prevLast = new Date(currentYear, currentMonth, 0);//지난 달 마지막 날짜
+        let thisLast = new Date(currentYear, currentMonth+1, 0);//이번 달 마지막 날짜
+
+        let PLdate = prevLast.getDate();//지난 달 마지막 날짜
+        let PLday = prevLast.getDay();//지난 달 마지막 요일
+
+        let TLdate = thisLast.getDate();//이번 달 마지막 날짜
+        let TLday = thisLast.getDay();//이번 달 마지막 요일
+
+        let prevDates = []; //이번 달 달력에 표시될 이전 달 날짜 배열
+        //let thisDates = new Array(TLdate + 1).shift();//이번 달 날짜 배열
+        let nextDates = []; //이번 달 달력에 표시될 다음 달 날짜 배열
+
+        if (PLday != 6){
+            for (let i = 0; i <= PLday; i++) {
+                prevDates.unshift(PLdate - i);
+            } //이번 달 달력에 표시될 이전 달 날짜 반복추가
+            for (let i = 1; i < 7-TLday; i++ ) {
+                nextDates.push(i);
+            }//이번 달 달력에 표시될 다음 달 날짜 반복추가
+        }
+        // //const a = new Array(TLdate + 1).shift()
+        // console.log(TLdate);
+        // console.log(typeof(TLdate));
+        
+        //shift()는 배열에서 첫 번째 요소를 제거하고, 제거된 요소를 반환한다
+
+
+        thisDates = [...Array(TLdate+1).keys()].slice(1);//shift()는 배열에서 첫 번째 요소를 제거하고, 제거된 요소를 반환한다
+        //따라서 slice() 사용. slice(시작,끝)은 시작요소부터 끝 전까지의 요소를 '출력'함.
+        console.log(thisDates)
+        //지난 달 날짜
+        //이번 달 날짜
+        //다음 달 날짜
+        const dates = prevDates.concat(thisDates, nextDates);//세 배열 합치기 = 이번 달 달력에 표시될 날짜들
+        console.log(dates)
+        // <div class="dates">에 추가
+        dates.forEach((date) => console.log(date));
+        dates.forEach((date, i) => {
+            dates[i] = `<div class="date">${date}</div>`;
+        })
+        document.querySelector('.dates').innerHTML = dates.join('') // 각 요소의 구분을 ,에서 ''(없음)으로 변경
+    </script>
+    
+
+
+
+
+
+        <script>
+
+            
+        </script>
+</body>
+</html>

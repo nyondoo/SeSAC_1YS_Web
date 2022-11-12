@@ -6,6 +6,9 @@
 
 body {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /*최소 높이. 100%는 부모요소의 100%를 사용. 화면의 100%가 아님, 100vh는 부모태그와 상관없이 Viewport Height의 100%를 다 쓰겠다는 의미*/
 }
 
 /*달력전체*/ 
@@ -17,8 +20,15 @@ body {
 /*윗부분*/
 .header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /*아이템들 사이에 균일한 간격을 부여*/
     align-items: center;
+}
+
+/*알바 선택*/
+.nav-work {
+    display: flex;
+    justify-content:flex-end;
+    padding: 20px 0px 20px 0px;
 }
 
   /*년-월 선택*/
@@ -27,7 +37,7 @@ body {
     font-weight: 900;
     font-size: 40px;
     color: lightslategrey;
-    cursor: pointer;
+    cursor: hand;
 }
 
 .year-month {
@@ -66,13 +76,33 @@ body {
     display: flex;
     flex-flow: row wrap;
     height: 500px;
-    border-top: 1px solid;
-    border-right: 1px solid;
-}
+    border-top: 1px solid #8C8C8C;
+    border-right: 1px solid #8C8C8C;
+} 
 
 .date {
     width: calc( 100% / 7 );
     text-align: right;
-    border-bottom: 1px solid;
-    border-left: 1px solid;
+    border-bottom: 1px solid #8C8C8C;
+    border-left: 1px solid #8C8C8C;
+    padding: 5px 5px ;
 }
+
+/*일요일 빨간색*/
+.day:nth-child(7n + 1),
+.date:nth-child(7n + 1) {
+    color : #F15F5F;
+}
+
+/*토요일 파란색*/
+.day:nth-child(7n),
+.date:nth-child(7n) {
+    color : #6799FF;
+}
+
+/*이번 달 날짜 제외 투명도 적용
+.other {
+    opacity: 0.3;
+}*/
+
+

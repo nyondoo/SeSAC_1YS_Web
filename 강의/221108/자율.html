@@ -14,17 +14,17 @@
 <body>
     <div class="calander"><!-----------------달력 전체 틀----------------->
         <div class="header"> <!---------------윗부분--------------->
-            <div class="nav-calander">&lt;</div>
-            <div class="year-month"></div> <!--현재 연,월 표시 "2022년 11월" -->
-            <div class="nav-calander">&gt;</div>
-            
-            <div class="nav-work">
-                <select class="choose-work">
-                    <option>work1</option>
-                    <option>work2</option>
-                </select><!--알바 전환,표시-->
-            </div>
-        </div><!---------------윗부분 끝--------------->
+            <div class="nav-calander" onclick="prevMonth()">&lt;</div>
+            <div class="year-month" onclick="goToday()"></div> <!--현재 연,월 표시 "2022년 11월" -->
+            <div class="nav-calander" onclick="nextMonth()">&gt;</div>
+        </div>  
+        <div class="nav-work">
+            <select class="choose-work">
+                <option>work1</option>
+                <option>work2</option>
+            </select><!--알바 전환,표시-->
+        </div>
+        <!---------------윗부분 끝--------------->
 
         <div class="main"> <!---------------메인 시작--------------->
             <div class="days"> <!--요일-->
@@ -44,65 +44,77 @@
     <script>
         let now = new Date(); // 현재 날짜
 
-        let currentYear = now.getFullYear();
-        let currentMonth = now.getMonth();
-        let currentDate = now.getDate();
+        function renderCalander () {
+            let currentYear = now.getFullYear();
+            let currentMonth = now.getMonth();
+            let currentDate = now.getDate();
 
-        document.querySelector('.year-month').innerText = 
-        `${currentYear}년 ${currentMonth+1}월` // 상단 현재년월 표시
+            document.querySelector('.year-month').innerText = 
+            `${currentYear}년 ${currentMonth + 1}월` // 상단 현재년월 표시
 
-        let prevLast = new Date(currentYear, currentMonth, 0);//지난 달 마지막 날짜
-        let thisLast = new Date(currentYear, currentMonth+1, 0);//이번 달 마지막 날짜
+            let prevLast = new Date(currentYear, currentMonth, 0);//지난 달 마지막 날짜
+            let thisLast = new Date(currentYear, currentMonth+1, 0);//이번 달 마지막 날짜
 
-        let PLdate = prevLast.getDate();//지난 달 마지막 날짜
-        let PLday = prevLast.getDay();//지난 달 마지막 요일
+            let PLdate = prevLast.getDate();//지난 달 마지막 날짜
+            let PLday = prevLast.getDay();//지난 달 마지막 요일
 
-        let TLdate = thisLast.getDate();//이번 달 마지막 날짜
-        let TLday = thisLast.getDay();//이번 달 마지막 요일
+            let TLdate = thisLast.getDate();//이번 달 마지막 날짜
+            let TLday = thisLast.getDay();//이번 달 마지막 요일
 
-        let prevDates = []; //이번 달 달력에 표시될 이전 달 날짜 배열
-        //let thisDates = new Array(TLdate + 1).shift();//이번 달 날짜 배열
-        let nextDates = []; //이번 달 달력에 표시될 다음 달 날짜 배열
+            let prevDates = []; //이번 달 달력에 표시될 이전 달 날짜 배열
+            let thisDates = [...Array(TLdate+1).keys()].slice(1);//shift()는 배열에서 첫 번째 요소를 제거하고, 제거된 요소를 반환한다
+            //따라서 slice() 사용. slice(시작,끝)은 시작요소부터 끝 전까지의 요소를 '출력'함.
+            let nextDates = []; //이번 달 달력에 표시될 다음 달 날짜 배열
 
-        if (PLday != 6){
-            for (let i = 0; i <= PLday; i++) {
-                prevDates.unshift(PLdate - i);
-            } //이번 달 달력에 표시될 이전 달 날짜 반복추가
-            for (let i = 1; i < 7-TLday; i++ ) {
-                nextDates.push(i);
-            }//이번 달 달력에 표시될 다음 달 날짜 반복추가
+            if (PLday != 6){
+                for (let i = 0; i <= PLday; i++) {
+                    prevDates.unshift(PLdate - i);
+                } //이번 달 달력에 표시될 이전 달 날짜 반복추가
+                for (let i = 1; i < 7-TLday; i++ ) {
+                    nextDates.push(i);
+                }//이번 달 달력에 표시될 다음 달 날짜 반복추가
+            }
+
+            const dates = prevDates.concat(thisDates, nextDates);//세 배열 합치기 = 이번 달 달력에 표시될 날짜들
+            console.log(dates)
+            // <div class="dates">에 추가
+            // dates.forEach((date) => console.log(date));
+                //지난 달 날짜, 다음 달 날짜 투명도
+            let firstDateIndex = dates.indexOf(1); //날짜 배열 중 값이 1인 인덱스 찾기. = 1일의 인덱스
+            let lastDateIndex = dates.indexOf(TLdate); //TLdate = 이번 달 마지막 날짜.
+            dates.forEach((date, i) => {
+                // 삼항 연산자인 조건부 연산자를 사용해 이번 달 날짜를 구분 
+                let condition = 
+                i >= firstDateIndex && i < lastDateIndex + 1
+                    ? 'this' //이번 달 날짜
+                    : 'other'; //이전,다음 달 날짜
+            dates[i] = `<div class="date"><span class="${condition}">${date}</span></div>`; 
+            //class명이 condition(this/other)인 <span>태그를 삽입
+            //새로 태그를 삽입한 이유 : 기존 date 태그 클래스명을 수정하는 경우 글자 뿐 아니라 격자도 투명도가 적용되기 때문
+            //span 태그 = inline요소, div태그 = block요소
+            })
+            document.querySelector('.dates').innerHTML = dates.join('') // 각 요소의 구분을 ,에서 ''(없음)으로 변경
         }
-        // //const a = new Array(TLdate + 1).shift()
-        // console.log(TLdate);
-        // console.log(typeof(TLdate));
-        
-        //shift()는 배열에서 첫 번째 요소를 제거하고, 제거된 요소를 반환한다
 
+        renderCalander();
 
-        thisDates = [...Array(TLdate+1).keys()].slice(1);//shift()는 배열에서 첫 번째 요소를 제거하고, 제거된 요소를 반환한다
-        //따라서 slice() 사용. slice(시작,끝)은 시작요소부터 끝 전까지의 요소를 '출력'함.
-        console.log(thisDates)
-        //지난 달 날짜
-        //이번 달 날짜
-        //다음 달 날짜
-        const dates = prevDates.concat(thisDates, nextDates);//세 배열 합치기 = 이번 달 달력에 표시될 날짜들
-        console.log(dates)
-        // <div class="dates">에 추가
-        dates.forEach((date) => console.log(date));
-        dates.forEach((date, i) => {
-            dates[i] = `<div class="date">${date}</div>`;
-        })
-        document.querySelector('.dates').innerHTML = dates.join('') // 각 요소의 구분을 ,에서 ''(없음)으로 변경
-    </script>
-    
+        // 이전 달 달력 랜더링 함수
+        function prevMonth () {
+            now.setMonth(now.getMonth() - 1);
+            renderCalander();
+        }
 
+        // 다음 달 달력 랜더링 함수
+        function nextMonth () {
+            now.setMonth(now.getMonth() + 1);
+            renderCalander();
+        }
 
-
-
-
-        <script>
-
-            
+        // 오늘 날짜 이동 함수
+        function goToday () {
+            now = new Date();
+            renderCalander();
+        }
         </script>
 </body>
 </html>

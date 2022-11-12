@@ -4,48 +4,28 @@
     box-sizing: border-box; /*테두리를 기준으로 크기를 정함*/
  }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /*최소 높이. 100%는 부모요소의 100%를 사용. 화면의 100%가 아님, 100vh는 부모태그와 상관없이 Viewport Height의 100%를 다 쓰겠다는 의미*/
+ .logo img {
+    width: 100px;
 }
-/*제목*/
-.title {
-    display: flex;
-    justify-content: center;
-    font-size: large;
-    padding: 0px 0px 50px 0px;
-}
-
 /*사이드바*/
-.sidebar {
-    display: block;
-    justify-content : flex-end;
-    padding : 0px 0px 20px 0px;
-}
-
-#expendMenu {
-    display: none;
-}
-
-#expendMenu:checked ~ ul{
-    display: block;
-    height: auto;
-}
-
-.sidebar ul {
-    list-style: none;
+aside {
+    float: right;
 }
 
 /*달력전체*/ 
+article {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh; /*최소 높이. 100%는 부모요소의 100%를 사용. 화면의 100%가 아님, 100vh는 부모태그와 상관없이 Viewport Height의 100%를 다 쓰겠다는 의미*/
+}
+
 .calander {
     width: 800px;
     margin: 50px;
 }
 
 /*윗부분*/
-.header {
+.controler {
     display: flex;
     justify-content: space-between; /*아이템들 사이에 균일한 간격을 부여*/
     align-items: center;
@@ -67,6 +47,7 @@ body {
 }
 
 .year-month {
+    display: flex;
     font-size: 35px;
     cursor: pointer;
 }
@@ -79,11 +60,6 @@ body {
 .choose-work {
     display: flex;
     font-size: 20px;
-}
-
-/*메인 부분*/
-.main {
-
 }
 
 /*요일*/

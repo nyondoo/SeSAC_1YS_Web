@@ -14,47 +14,53 @@
     <link rel="stylesheet" href="style_calander.css">
 </head>
 <body>
-    <div class="calander"><!-----------------달력 전체 틀----------------->
-        <div class="title">(아이콘)출근&월급관리</div> 
-        
+    <header>
+        <a href="#" class="logo">
+            <img src="apple.jpg">
+        </a>
         <!------------사이드바------------>
-        <div class="sidebar"> 
-            <div class="menu">메뉴</div>
-                <a href="#" class="closebtn" onclick()="closeNav()">~</a> 
+        <aside class="sidebar"> 
+            <input type="checkbox" id="menuButton">
+            <label for="menuOpen"></label>    
+            <div class="content">
+                <a href="#" class="closebtn" onclick()="closeNav()"></a> 
                 <a href="#">알바 등록</a>
                 <a href="#">설정</a>
-            </div> 
-
-        <span onclick="openNav()">open</span>
-        <!------------사이드바 끝------------>
-        
-        <!---------------윗부분--------------->
-        <div class="header">
-            <div class="nav-calander" onclick="prevMonth()">&lt;</div>
-            <div class="year-month" onclick="goToday()"></div> <!--현재 연,월 표시 "2022년 11월" -->
-            <div class="nav-calander" onclick="nextMonth()">&gt;</div>
-        </div>
-        <div class="selectWork">
-            <select>
-                <option>work1</option>
-                <option>work2</option>
-            </select>
-        </div>  
-        <!---------------윗부분 끝--------------->
-
-        <div class="main"> <!---------------메인 시작--------------->
-            <div class="days"> <!--요일-->
-                <div class="day">일</div>
-                <div class="day">월</div>
-                <div class="day">화</div>
-                <div class="day">수</div>
-                <div class="day">목</div>
-                <div class="day">금</div>
-                <div class="day">토</div>
             </div>
-            <div class="dates"><!--날짜--></div>
-        </div> <!---------------메인 끝--------------->
-    </div><!-----------------달력 전체 끝----------------->
+        </aside> 
+        <!------------사이드바 끝------------>
+   </header>
+    <article>
+        <div class="calander"><!-----------------달력 전체 틀----------------->
+            <!---------------윗부분--------------->
+            <div class="controler">
+                <div class="nav-calander" onclick="prevMonth()">&lt;</div>
+                <div class="year-month" onclick="goToday()"></div> <!--현재 연,월 표시 "2022년 11월" -->
+                <div class="nav-calander" onclick="nextMonth()">&gt;</div>
+            </div>
+            <div class="selectWork">
+                <select>
+                    <option>work1</option>
+                    <option>work2</option>
+                </select>
+            </div>  
+            <!---------------윗부분 끝--------------->
+
+            <div class="main"> <!---------------메인 시작--------------->
+                <div class="days"> <!--요일-->
+                    <div class="day">일</div>
+                    <div class="day">월</div>
+                    <div class="day">화</div>
+                    <div class="day">수</div>
+                    <div class="day">목</div>
+                    <div class="day">금</div>
+                    <div class="day">토</div>
+                </div>
+                <div class="dates"><!--날짜--></div>
+            </div> <!---------------메인 끝--------------->
+        </div><!-----------------달력 전체 끝----------------->
+    </article>
+    
     
     
     <!----------------------------------날짜 채우기----------------------------->

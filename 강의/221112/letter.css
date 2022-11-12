@@ -1,0 +1,55 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+* {
+    font-family: 'Jeju Hallasan'
+}
+
+div {
+    width: 100%;
+    height: 15px;
+}
+
+img {
+    width: 250px;
+}
+
+.content {
+    height: 300px;
+    align-items: center;
+}
+
+#title {
+    text-align: center;
+}
+
+.content p {
+    text-align: center;
+}
+
+#red, #red2 {
+    background-color: #FFB4B4;
+}
+
+#orange, #orange2 {
+    background-color: #FFB85A;
+}
+
+#yellow, #yellow2 {
+    background-color: #FFFF6C;
+}
+
+#green, #green2 {
+    background-color: #CFFF24;
+}
+
+#blue, #blue2 {
+    background-color: #A2F6FF;
+}
+
+#dark-blue, #dark-blue2 {
+    background-color: #7F7EFF;
+}
+
+#purple, #purple2 {
+    background-color: #DD7EFF;
+}

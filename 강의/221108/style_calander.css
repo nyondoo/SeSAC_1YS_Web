@@ -10,6 +10,33 @@ body {
     align-items: center;
     min-height: 100vh; /*최소 높이. 100%는 부모요소의 100%를 사용. 화면의 100%가 아님, 100vh는 부모태그와 상관없이 Viewport Height의 100%를 다 쓰겠다는 의미*/
 }
+/*제목*/
+.title {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    padding: 0px 0px 50px 0px;
+}
+
+/*사이드바*/
+.sidebar {
+    display: block;
+    justify-content : flex-end;
+    padding : 0px 0px 20px 0px;
+}
+
+#expendMenu {
+    display: none;
+}
+
+#expendMenu:checked ~ ul{
+    display: block;
+    height: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+}
 
 /*달력전체*/ 
 .calander {
@@ -22,13 +49,12 @@ body {
     display: flex;
     justify-content: space-between; /*아이템들 사이에 균일한 간격을 부여*/
     align-items: center;
+    padding : 0px 0px 20px 0px;
 }
 
 /*알바 선택*/
-.nav-work {
-    display: flex;
-    justify-content:flex-end;
-    padding: 20px 0px 20px 0px;
+.selectWork {
+    padding : 0px 0px 10px 0px;
 }
 
   /*년-월 선택*/
@@ -37,11 +63,12 @@ body {
     font-weight: 900;
     font-size: 40px;
     color: lightslategrey;
-    cursor: hand;
+    cursor: pointer;
 }
 
 .year-month {
     font-size: 35px;
+    cursor: pointer;
 }
 
    /*work 선택*/
@@ -100,9 +127,9 @@ body {
     color : #6799FF;
 }
 
-/*이번 달 날짜 제외 투명도 적용
+/*이번 달 날짜 제외 투명도 적용*/
 .other {
     opacity: 0.3;
-}*/
+}
 
 

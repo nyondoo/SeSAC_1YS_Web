@@ -8,8 +8,17 @@
     width: 100px;
 }
 /*사이드바*/
-aside {
-    float: right;
+.calander > .sidebar {
+    position: fixed;
+    left: 0;
+    top: 80px;
+    bottom: 0;
+    width: 15rem;
+
+    padding: 1rem;
+    z-index: 9999;
+
+    background-color: antiquewhite;
 }
 
 /*달력전체*/ 

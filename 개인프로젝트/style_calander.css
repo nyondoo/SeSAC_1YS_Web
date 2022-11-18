@@ -1,24 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box; /*테두리를 기준으로 크기를 정함*/
- }
+    font-family: "Noto Sans KR", sans-serif;
+}
 
  .logo img {
     width: 100px;
 }
 /*사이드바*/
-.calander > .sidebar {
-    position: fixed;
-    left: 0;
-    top: 80px;
+input[id="menuicon"] {
+    display: none;
+    float: right;
+}
+
+input[id="menuicon"] + label {
+    display: block;
+    margin: 30px;
+    width: 40px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    float: right;
+}
+
+input[id="menuicon"] + label span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    border-radius: 30px;
+    background: #8C8C8C;
+    transition: all .35s;
+}
+
+input[id="menuicon"] + label span:nth-child(1) {
+    top: 0;
+}
+
+input[id="menuicon"] + label span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+input[id="menuicon"] + label span:nth-child(3) {
     bottom: 0;
-    width: 15rem;
+}
 
-    padding: 1rem;
-    z-index: 9999;
+input[id="menuicon"]:checked + label {
+    z-index: 2;
+}
 
-    background-color: antiquewhite;
+input[id="menuicon"]:checked + label span {
+    background: pink;
+}
+
+input[id="menuicon"]:checked + label span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+input[id="menuicon"]:checked + label span:nth-child(2) {
+    opacity: 0;
+}
+
+input[id="menuicon"]:checked + label span:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+}
+
+.sidebar {
+    width: 300px;
+    height: 100%;
+    background: #EAEAEA;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    z-index: 1;
+    transition: all .35s;
+}
+
+input[id="menuicon"]:checked + label + div {
+    right: 0;
+}
+
+.sidebar .menuList {
+    position: absolute;
+    top: 100px;
+    left: 30px;
+}
+
+.menuList a {
+    text-decoration-line: none;
+    color: black;
 }
 
 /*달력전체*/ 
@@ -26,11 +102,13 @@ article {
     display: flex;
     justify-content: center;
     min-height: 100vh; /*최소 높이. 100%는 부모요소의 100%를 사용. 화면의 100%가 아님, 100vh는 부모태그와 상관없이 Viewport Height의 100%를 다 쓰겠다는 의미*/
-}
-
-.calander {
     width: 800px;
     margin: 50px;
+    transition: all;
+}
+
+input[id="menuicon"]:checked ~ div[id="mainContent"] {
+    width: 500px;
 }
 
 /*윗부분*/
@@ -51,7 +129,7 @@ article {
     display: flex;
     font-weight: 900;
     font-size: 40px;
-    color: lightslategrey;
+    color: #8C8C8C;
     cursor: pointer;
 }
 

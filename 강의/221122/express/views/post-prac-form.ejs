@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>post 요청</h3>
+    <form action="/postResult" method="post">
+        이름<input type="text" name="id" required>
+        <br>
+        <fieldset>
+            <legend>성별</legend>
+            <input type="radio" name="gender" value="male" id="men" required><label for="men">남자</label>
+            <input type="radio" name="gender" value="female" id="women" required><label for="women">여자</label>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>생년월일</legend>
+            <select>
+                <%for ( let i=1900; i<=2022; i++) {%>
+                    <option value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select>년
+            <select>
+                <%for ( let i=1; i<=12; i++) {%>
+                    <option value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select>월
+            <select>
+                <%for ( let i=1; i<=31; i++) {%>
+                    <option value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select>일
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>관심사</legend>
+            <input type="checkbox" name="interest" value="trip"/> 여행
+            <input type="checkbox" name="interest" value="fashion"/> 패션
+            <input type="checkbox" name="interest" value="food"/> 음식
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>선택</legend>
+            좋아하는 색상<input type="color" name="favorite">
+            좋아하는 숫자<input type="number" name="favorite">
+        </fieldset>
+        <br>
+        <button type="sumbit">회원가입</button>
+    </form>
+</body>
+</html>

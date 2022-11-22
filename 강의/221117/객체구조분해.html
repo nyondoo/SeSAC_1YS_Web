@@ -1,0 +1,20 @@
+<script>
+    let obj = {
+        key1: 'one',
+        key2: 'two'
+    };
+    let { key1 :newKey1, key2, key3 = 'three'} = obj;
+    console.log("key1 : ", key1); // ''
+    console.log("newKey1 : ", newKey1); // ''
+    console.log("key2 : ", key2); // 'two'
+    console.log("key3 : ", key3); // 'three'
+
+    // let { a, b } = { a:10, b:20 };
+    // console.log("a : ", a);
+    // console.log("b : ", b);
+
+    // let { c, d, ...rest} = { c:30, d:40, e:50, f:60};
+    // console.log("c: ", c);
+    // console.log("d: ", d);
+    // console.log("rest : ", rest);
+</script>

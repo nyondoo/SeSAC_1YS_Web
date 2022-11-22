@@ -21,6 +21,7 @@ function func2() {
         setTimeout(function(){resolve("성공");}, 1000);
     });
 }
+
 func2().then(function(result) {
     console.log("result2 : ", result);
     return 'a';

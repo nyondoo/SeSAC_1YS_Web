@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Get-dynamic</title>
+    <script>
+        function sendGet(){
+            let form = document.getElementById('form_info');
+            axios({
+                method:'get',
+                url: '/form',
+                params: {
+                    name: form.id.value,
+                    gender: form.gender.value
+                    // b_year: form.year.value,
+                    // b_month: form.month.value,
+                    // b_date: form.date.value
+                }
+            }).then(function(res){
+                alert(res.data.msg);
+            });
+        };
+    </script>
+</head>
+<body>
+    <h3>get 요청</h3>
+    <form id="form_info">
+        이름<input type="text" name="id">
+        <br>
+        <fieldset>
+            <legend>성별</legend>
+            <input type="radio" name="gender" value="male" id="men"><label for="men">남자</label>
+            <input type="radio" name="gender" value="female" id="women"><label for="women">여자</label>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>생년월일</legend>
+            <select>
+                <%for ( let i=1900; i<=2022; i++) {%>
+                    <option  name='year' value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select>년
+            <select>
+                <%for ( let i=1; i<=12; i++) {%>
+                    <option name='month' value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select>월
+            <select>
+                <%for ( let i=1; i<=31; i++) {%>
+                    <option name='date' value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select>일
+        </fieldset>
+        <button type="button" onclick="sendGet()">회원가입</button>
+    </form>
+</body>
+</html>

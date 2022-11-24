@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="./jquery-ui-1.13.2/jquery-ui.js"></script>
     <title>Document</title>
+    <script>
+    function name_validation(obj){
+        let regName = /^[가-힣]$/;
+        if (regName.test(obj.value) === false) {
+            $('.err').text(`한글 이름을 입력하십시오.`)
+        }
+    }
+    </script>
 </head>
 <body>
     <h3>post 요청</h3>
     <form action="/postResult" method="post">
-        이름<input type="text" name="id" required>
+        이름<input 
+        type="text" 
+        name="id"
+        required
+        placeholder="이름"
+        oninput="name_validation(this);"
+        >
+        <div class="err"></div>
+                <!-- pattern="^[가-힣]$" -->
+                <!-- title="한글 이름을 입력해주세요." -->
         <br>
         <fieldset>
             <legend>성별</legend>
@@ -46,7 +65,7 @@
         <fieldset>
             <legend>선택</legend>
             좋아하는 색상<input type="color" name="favorite">
-            좋아하는 숫자<input type="number" name="favorite">
+            좋아하는 숫자<input type="number" name="favorite" pattern="^[0-9]$">
         </fieldset>
         <br>
         <button type="sumbit">회원가입</button>

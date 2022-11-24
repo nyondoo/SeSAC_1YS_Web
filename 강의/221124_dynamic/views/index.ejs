@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function sendGet() {
+            let form = document.getElementById('form_info');
+            //form.name.value 폼 태그의 name속성이 'name'인 것의 값을 가져오겠다
+            //form.age.value = 폼 태그의 name속성이 'age'인 것의 값을 가져오겠다
+            axios({
+                method: 'get',
+                url: '/form',
+                params: {name: form.name.value}
+            }).then(function(res){//서버에서 보낸 응답 전체 = res
+                alert(res.data.msg);//전체 응답 중 data에 res.send의 내용이 담겨옴
+            });
+        }
+
+        function sendPost() {
+            let form = document.getElementById('form_info');
+            axios({
+                method: 'post',
+                url: '/form',
+                data: {name: form.name.value} /// post는 body에 정보를 담아오기 때문에 data
+            }).then(function(res){//서버에서 보낸 응답 전체 = res
+                alert(res.data.msg);//전체 응답 중 data에 res.send의 내용이 담겨옴
+            });
+        }
+    </script>
+    <title>dynamic</title>
+</head>
+<body>
+    <button type="button" onclick="sendGet()">get</button>
+    <button type="button" onclick="sendPost()">post</button>
+    <form id="form_info">
+        <input type="text" name="name">
+    </form>
+</body>
+</html>

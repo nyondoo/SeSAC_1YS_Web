@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script>
+        function sendGet() {
+            let form = document.getElementById('form_info');
+            //form.name.value 폼 태그의 name속성이 'name'인 것의 값을 가져오겠다
+            //form.age.value = 폼 태그의 name속성이 'age'인 것의 값을 가져오겠다
+            $.ajax({
+                type: 'GET',
+                url: '/form',
+                data: {name:form.name.value},
+                success: function(dd){
+                    console.log('get '+dd)
+                    alert('성공')
+                },
+                error: function(data){
+                    alert('실패')
+                }
+            })
+        }
+
+        function sendPost() {
+            let form = document.getElementById('form_info');
+            $.ajax({
+                type: 'POST',
+                url: '/form',
+                data: {name: form.name.value},
+                success: function(data){
+                    console.log('post '+data);
+                }
+            })
+        }
+    </script>
+    <title>ajax</title>
+</head>
+<body>
+    <button type="button" onclick="sendGet()">get</button>
+    <button type="button" onclick="sendPost()">post</button>
+    <form id="form_info">
+        <input type="text" name="name">
+    </form>
+</body>
+</html>

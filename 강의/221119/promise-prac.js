@@ -29,5 +29,29 @@ func2().then(function(result){
     console.log('result2: ', result)
     return 'a';
 })
+.then(function(abc){ // 위에서의 리턴값 a를 매개변수로 받음
+    console.log('abc: ', abc);
+});
 
+let b = func2();
+console.log(b);
 
+function func3(flag) {
+    return new Promise(function(resolve, reject) {
+        if (flag) {
+            resolve('flag는 true');
+        }
+        else {
+            reject('flag는 false')
+        }
+    });
+}
+
+func3(true).then(
+    function(msg) {
+        console.log("msg1: " ,msg);
+    },
+    function(msg) {
+        console.log("msg2: ", msg);
+    }
+);

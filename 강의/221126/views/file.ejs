@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h5>single</h5><!--한번에 하나-->
+    <form action="/upload" method="POST" enctype="multipart/form-data"> <!--파일이 깨질 수 있기 때문에 인코딩 하지 않겠다는 속성을 지정해줘야 함-->
+        <input type="text" name="name"><!--file이전에 input창 입력값으로 파일이름 지정 가능. multer 미들웨어에서 처리O-->
+        <input type="file" name="userfile">
+        <input type="text" name="name2"><!--file다음의 input창 입력값으로는 파일이름 지정 불가능. multer 미들웨어에서 처리X-->
+        <button>업로드</button>
+    </form>
+
+    <h5>array</h5><!--한번에 여러 개 파일-->
+    <form action="/upload-array" method="POST" enctype="multipart/form-data"> <!--파일이 깨질 수 있기 때문에 인코딩 하지 않겠다는 속성을 지정해줘야 함-->
+        <input type="file" name="userfile" multiple> <!--하나의 input에 여러개 파일 업로드하는 속성-->
+        <button>업로드</button>
+    </form>
+
+    <h5>fields</h5> <!--하나씩 여러번-->
+    <form action="/upload-fields" method="POST" enctype="multipart/form-data"> <!--파일이 깨질 수 있기 때문에 인코딩 하지 않겠다는 속성을 지정해줘야 함-->
+        <input type="file" name="userfile" multiple> <!--하나의 input에 여러개 파일 업로드하는 속성-->
+        <button>업로드</button>
+    </form>
+</body>
+</html>

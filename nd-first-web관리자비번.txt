@@ -1,1 +1,2 @@
 서버 관리자 비밀번호 : ndwebpwd
+sql : ndsqlpwd

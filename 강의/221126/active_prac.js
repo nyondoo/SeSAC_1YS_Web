@@ -31,9 +31,9 @@ app.get('/', (req, res) => {
 // {
 //     path: req.file.destination,
 //     file: req.file.filename}
-app.post('/upload', upload.single('userfile'), (req,res)=> { 
-    console.log('data :', req.body)
-    res.send('end')
+app.post('/', upload.single('userfile'), (req,res)=> { 
+    console.log(req.file.path);
+    res.send({path: req.file.path});
 })
 
 app.listen( port, ()=>{

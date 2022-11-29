@@ -9,35 +9,35 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         function result() {
-            const formData = new FormData();
-            const file = document.querySelector('#dynamicFile');
-            formData.append('userfile', file);
-            console.log(formData);
-            console.log(file)
+            let form = document.getElementById("form_register");
+            const formData = new FormData(form);
+             // formData를 만들 때 기본값으로 form을 보내면 현재 form에 세팅된 값으로 formData 객체가 만들어진다.
+
             axios({
                 method:'POST',
-                url: '/upload',
+                url: '/',
                 data: formData,
                 headers: { "Content-Type" : "multipart/form-data" }
             })
-            .then((res)=>{
-                console.log('response : ',res)
-            })
+            .then((res)=>{ return res.data; })
+            .then((res)=>{ document.querySelector('img').src = res.path})
         }
     </script>
 </head>
 <body>
-    <form enctype="multipart/form-data">
+    <form id="form_register" enctype="multipart/form-data">
         <fieldset>
             <legend>개인 정보</legend>
-            아이디 : <input id="id" type="text" name="id"><br>
-            비밀번호 : <input id="pw" type="password" name="pw"><br>
-            이름 : <input id="name" type="text" name="name"><br>
-            나이 : <input id="age" type="number" name="age">
+            아이디 : <input type="text" name="id"><br>
+            비밀번호 : <input type="password" name="pw"><br>
+            이름 : <input type="text" name="name"><br>
+            나이 : <input type="number" name="age">
         </fieldset>
-        <input id="dynamicFile" type="file" name="userfile">
+        <input type="file" name="userfile">
         <button>리셋</button>
-        <button onclick="result()">회원가입</button>
+        <button type="button" onclick="result()">회원가입</button>
     </form>
+    <br>
+    <img>
 </body>
 </html>

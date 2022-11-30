@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알바 등록</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script></script>
+
+</head>
+<body>
+    <fieldset>
+        <legend>알바 등록</legend>
+        <form id="workRegi" action="/success" method="post">
+            등록할 이름 : <input type="text" name="work" required>
+            일일 근무시간 : <input type="number" min="1" max="8" name="time" required>
+            <fieldset>
+                <legend>출근 횟수</legend>
+                <input type="radio" name="one" value="1">
+                <input type="radio" name="two" value="2">
+                <input type="radio" name="three" value="3">
+                <input type="radio" name="four" value="4">
+                <input type="radio" name="five" value="5">
+                <input type="radio" name="six" value="6">
+                <input type="radio" name="seven" value="7">
+            </fieldset>
+        </form>
+        <button onclick="register()">등록</button>
+    </fieldset>
+</body>
+</html>

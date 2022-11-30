@@ -7,8 +7,8 @@ const port = 8080;
 //use ejs tamplete
 app.set('view engine', 'ejs');
 
-//access image file directory
-app.use('/static', express.static('static'));
+//access static file directory
+app.use('/static', express.static(__dirname + '/static'));
 
 //Form
 app.use(express.urlencoded({extended: true}));
@@ -20,9 +20,22 @@ app.get('/home', (req, res)=>{
     res.render( 'home'); // render home.ejs
 });
 
+//render register page
+app.post('/register', (req, res)=>{
+    res.render('register');
+})
+
+//render success page
+app.post('/success', (req, res)=>{
+    res.render('success',
+    { data : req.body });
+})
+
+
+
 
 
 //open server with listen method
 app.listen( port, ()=>{
     console.log('server open : ', port);
-} ); 
+} );

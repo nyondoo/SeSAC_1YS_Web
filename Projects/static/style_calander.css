@@ -11,6 +11,10 @@
     width: 100px;
 }
 /*사이드바*/
+button {
+    all: unset;
+}
+
 input[id="menuicon"] {
     display: none;
     float: right;

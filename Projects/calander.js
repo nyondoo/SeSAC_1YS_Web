@@ -4,6 +4,8 @@ const app = express();
 //declare port
 const port = 8080;
 
+const path = require('path')
+
 //use ejs tamplete
 app.set('view engine', 'ejs');
 

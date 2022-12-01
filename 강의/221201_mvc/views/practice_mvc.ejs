@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // axios // 
+        function sendGet_axios() {
+            let form = document.getElementById('form_info');
+            axios({
+                method: 'get',
+                url: '/form2',
+                params: {
+                    id: form.id.value,
+                    pw: form.pw.value
+                } // 서버의 데이터외 일치하는지 유효성 검사를 요청할 것
+            }).then((res) => {
+                document.querySelector(".login").innerHTML = res.data.msg;
+            });
+        }
+
+        function sendPost_axios() {
+            let form = document.getElementById('form_info');
+            axios({
+                method: 'post',
+                url: '/form2',
+                data: {
+                    id: form.id.value,
+                    pw: form.pw.value
+                }
+            }).then((res) => {
+                document.querySelector(".login").innerHTML = res.data.msg;
+                console.log(res);
+            });
+        }
+    </script>
+    <title>login</title>
+</head>
+<body>
+    
+    <form id="form_info">
+        아이디 : <input type="text" name="id"><br>
+        비밀번호 : <input type="password" name="pw"><br>
+        
+        <div class="login"></div>
+
+        <button type="button" onclick="sendGet_axios()">axios Get로그인</button>
+        <button type="button" onclick="sendPost_axios()">axios Post로그인</button>
+        
+    </form>
+</body>
+</html>

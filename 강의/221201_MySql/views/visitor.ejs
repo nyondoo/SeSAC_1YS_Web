@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <form id="form_register">
+        <fieldset>
+            <legend>방명록 등록</legend>
+            이름 : <input type="text" name="name" placeholder="사용자 이름"><br>
+            방명록 : <input type="text" name="comment" placeholder="방명록"><br>
+            <div class="register-btn"><button type="button" onclick="register()">등록</button></div>
+        </fieldset>
+    </form>
+
+    <table border="1" cellspacing="0" cellpadding="10" style="margin-top:30px;">
+        <tr>
+            <th>ID</th>
+            <th>작성자</th>
+            <th>방명록</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+        <%for(let i=0; i<data.length; i++) {%>
+            <tr>
+                <td><%=data[i].id%></td> <!--controller에서 넘겨준 data 사용-->
+                <td><%=data[i].name%></td>
+                <td><%=data[i].comment%></td>
+                <td><button type="button">수정</button></td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+        <%}%>
+    </table>
+
+    <script>
+        function register(){
+            let form = document.getElementById("form_register")
+            let data = {
+                name: form.name.value,
+                comment: form.comment.value
+            }
+            axios({
+                method: 'post',
+                url: '/visitor/register',
+                data: data
+            })
+            .then((response)=>{ //서버에서 응답으로 넘겨준 데이터 = id(id는 sql에서 자동생성되는 값) 나머지는 위에서 선언한 data
+                $("table").append(`
+                    <tr>
+                        <td>${response.data}</td>
+                        <td>${data.name}</td>
+                        <td>${data.comment}</td>
+                        <td><button type="button">수정</button></td>
+                        <td><button type="button">삭제</button></td>
+                    </tr>
+                `)
+            })
+        }
+    </script>
+</body>
+</html>

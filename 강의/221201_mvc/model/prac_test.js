@@ -1,3 +1,6 @@
+// model = 데이터 처리
+
+
 exports.send = () => {
     // return ({ 
     //     id : users.split('\n')[1],

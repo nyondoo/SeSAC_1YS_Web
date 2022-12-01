@@ -1,3 +1,6 @@
+//view와 model 연결
+//model에서 처리한 데이터를 view에서 표시/사용할 수 있도록 넘겨줌
+
 const model = require('../model/prac_test') //데이터 베이스에 저장되어있는 데이터
 
 // 로그인 페이지 렌더 함수

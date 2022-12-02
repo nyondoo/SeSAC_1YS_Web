@@ -12,6 +12,7 @@
 
 <title>알바캘린더</title>
 <link rel="stylesheet" href="./static/style_calander.css">
+
 </head>
 <body>
     <header>
@@ -26,9 +27,8 @@
         </label>
         <div class="sidebar">
             <div class="menuList">
-                <button type="button" id="home" onclick="homePage()">홈</button><br>
-                <button type="button" id="setting" onclick="settingPage()">설정</button><br>
-                <button type="button" id="register" onclick="regiPage()">알바 등록</button>
+                <button type="button" id="home" onclick="location.href='/home'">홈</button><br>
+                <button type="button" id="register" onclick="location.href='/register'">알바 등록</button>
             </div>
         </div>
     </header>
@@ -139,6 +139,19 @@
             now = new Date();
             renderCalander();
         }
+    </script>
+    <script>
+        function homePage() {
+
+        };
+
+        function settingPage() {
+
+        };
+
+        function regiPage() {
+
+        };
     </script>
 </body>
 </html>

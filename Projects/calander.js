@@ -16,25 +16,11 @@ app.use('/static', express.static(__dirname + '/static'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-
-//home page
-app.get('/home', (req, res)=>{
-    res.render( 'home'); // render home.ejs
-});
-
-//render register page
-app.post('/register', (req, res)=>{
-    res.render('register');
-})
-
-//render success page
-app.post('/success', (req, res)=>{
-    res.render('success',
-    { data : req.body });
-})
-
-
-
+//router setting
+//use router in /routes/index.js
+//localhost:8080/ 포함하는 모든 경로
+const router = require('./routes');
+app.use('/', router);
 
 
 //open server with listen method

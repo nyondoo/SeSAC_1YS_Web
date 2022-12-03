@@ -11,7 +11,7 @@ app.use(express.json());
 
 
 
-// 라우터 불러오기
+// router를 미들웨어로 불러오기
 const router = require('./routes');
 //localhost:8080/visitor 이 포함된 주소로 접속해야 router 렌더
 app.use ('/visitor', router);

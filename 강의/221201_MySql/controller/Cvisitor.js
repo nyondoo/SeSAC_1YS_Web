@@ -1,11 +1,11 @@
 //모델 불러오기
-const Visitor = require('../model/Visitor');
+const Visitor = require('../model/Visitor');  // = model폴더의 Visitor.js
 
 //첫 페이지 렌더하는 함수 visitor()
 exports.visitor = (req, res)=>{
-    Visitor.get_visitor(function(result){ // 모델의 get_visitor()함수의 인자로 콜백함수를 줌
+    Visitor.get_visitor(function(result){ // sql데이터 사용을 위해 연결해둔 모델의 get_visitor()함수의 인자로 콜백함수를 줌
         console.log(result);
-        res.render("visitor", {data: result}); 
+        res.render("visitor", {data: result}); //매개변수 result = model get_visitor에서 넘겨준 인자 rows를 데이터로 넘겨줌
     }); // visitor.ejs 렌더, data로 result를 넘겨줌 => ejs에서 사용
 }
 //1. model에서 sql문 실행, 결과값=rows / cd(rows)명령에서 cb = controller에서 인자로 넘겨준 콜백함수.
@@ -29,4 +29,30 @@ exports.register = (req, res)=> {
         console.log(id); 
         res.send(String(id)); // int형이기 때문에 문자열로 변환
     })
+}
+
+exports.delete = (req, res)=>{
+    //mysql에서 req.body.id에 해당하는 데이터를 delete해야함 => model에서 수행
+    //서버응답 res.send
+    Visitor.delete_visitor(req.body.id, function(){
+        res.send(true);
+    })
+}
+
+
+//router에서 지정한 함수 작성
+exports.get_visitor_by_id = (req, res)=>{
+    //req.query.id에 해당하는 데이터를 조회 => model에서 수행
+    //서버 응답 = 조회한 데이터
+    Visitor.get_visitor_by_id_model(req.query.id, function(rows){
+        res.send(rows);
+    });
+}
+
+exports.update_visitor = (req,res)=>{
+    //req.body로 받아온 데이터를 MySQL에 update할 수 있도록 하기
+    //서버 응답
+    Visitor.update_visitor(req.body, function(){
+        res.send(true);
+    });
 }

@@ -7,14 +7,26 @@
     <title>Visitor</title>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .d-none{
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <form id="form_register">
         <fieldset>
             <legend>방명록 등록</legend>
+            <input type="hidden" name="id"><!--사용자 눈에 보이지 않음-->
             이름 : <input type="text" name="name" placeholder="사용자 이름"><br>
             방명록 : <input type="text" name="comment" placeholder="방명록"><br>
-            <div class="register-btn"><button type="button" onclick="register()">등록</button></div>
+            <div class="update-btn d-none">
+                <button type="button" onclick="update_visitor();">수정</button>
+                <button type="button" onclick="">취소</button>
+            </div>
+            <div class="register-btn">
+                <button type="button" onclick="register()">등록</button>
+            </div>
         </fieldset>
     </form>
 
@@ -31,13 +43,79 @@
                 <td><%=data[i].id%></td> <!--controller에서 넘겨준 data 사용-->
                 <td><%=data[i].name%></td>
                 <td><%=data[i].comment%></td>
-                <td><button type="button">수정</button></td>
-                <td><button type="button">삭제</button></td>
+                <td><button type="button" onclick="update_load('<%=data[i].id%>', this);">수정</button></td>
+                <td><button type="button" onclick="delete_visitor('<%=data[i].id%>', this);">삭제</button></td> <!--데이터의 id를 매개변수로 받아옴, this에 button태그가 담김. this의 부모는 td, 그 부모는 tr-->
             </tr>
         <%}%>
     </table>
-
+<!--요청 메소드-->
+<!-- get(query) : 데이터 조회
+post(body) : 데이터 생성, 삽입(insert)
+delete(body) : 데이터 삭제 => 문법/기능적인 것은 post와 동일
+patch(일부수정), put(전체수정) : 데이터 수정 -->
     <script>
+        let update_tr;
+
+        ////상위 수정 버튼////
+        function update_load(id, element){
+            axios({
+                method: 'get',
+                url: '/visitor/get_visitor',
+                params: {id: id}
+            })
+            .then((response)=>{
+                let form = document.getElementById('form_register');
+                form.id.value = response.data.id; //조회 및 데이터 사용을 위해 id값을 input태그에 저장해두기
+                form.name.value = response.data.name;//수정버튼 클릭 시 이름 input태그의 default값을 해당 rows의 이름으로 변경
+                form.comment.value = response.data.comment;//수정버튼 클릭 시 방명록 input태그의 default값을 해당 rows의 방명록으로 변경
+                $('.update-btn').removeClass('d-none');//수정+취소 버튼의 display:none 속성을 없앰 = 버튼이 드러남
+                $('.register-btn').addClass('d-none');//기존 등록 버튼에 display:none 속성 부여 = 버튼이 숨겨짐
+                update_tr = element.parentElement.parentElement;
+            })
+        }
+
+        ////수정 버튼////
+        function update_visitor(id, element) {
+            let form = document.getElementById('form_register');
+            axios({
+                method: 'patch',
+                url: '/visitor/update',
+                data: {
+                    id: form.id.value,
+                    name: form.name.value,
+                    comment: form.comment.value
+                }
+            })
+            .then((response)=>{
+                //데이터 값 수정해서 td태그 반영
+                update_tr.children[1].innerText = form.name.value;
+                update_tr.children[2].innerText = form.comment.value;
+                //form.value를 다 빈 값으로 바꿈
+                form.id.value = '';
+                form.name.value = '';
+                form.comment.value = '';
+                //버튼 원상태로
+                $('.update-btn').addClass('d-none');
+                $('.register-btn').removeClass('d-none');
+            })
+
+        }
+
+
+        ////삭제 버튼////
+        function delete_visitor(delete_id, element) {
+            axios({
+                method: 'delete',
+                url: '/visitor/delete',
+                data: {id: delete_id}
+            })
+            .then((response)=>{
+                if(response.data) {element.parentElement.parentElement.remove()} //=tr태그
+                else alert('알 수 없는 오류 발생')
+            })
+        }
+
+        ////등록 버튼////
         function register(){
             let form = document.getElementById("form_register")
             let data = {
@@ -56,7 +134,7 @@
                         <td>${data.name}</td>
                         <td>${data.comment}</td>
                         <td><button type="button">수정</button></td>
-                        <td><button type="button">삭제</button></td>
+                        <td><button type="button" onclick="delete_visitor(${response.data}, this);">삭제</button></td>
                     </tr>
                 `)
             })

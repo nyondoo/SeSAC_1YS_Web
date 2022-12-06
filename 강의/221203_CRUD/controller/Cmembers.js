@@ -15,8 +15,8 @@ exports.join = (req, res) => {
 exports.login = (req, res) => {
     //로그인 정보 데이터베이스에서 조회
     //서버응답 = 유효성 검사 후 결과 내보내기
-    member.login_model(req.body, function(rows){
-        if (rows.find(req.body.id)  && req.body.pw ) {
+    member.login_model(req.body.id, req.body.pw, function(rows){
+        if (rows.length > 1 ) {
             res.send({msg: '<p style="color:blue">로그인 성공</p>'});
         }
         else {

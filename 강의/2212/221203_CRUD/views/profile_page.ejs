@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        function edit() {
+            let form = document.querySelector("#form_profile")
+            if ( !form.checkValidity() ) {
+                    form.reportValidity();
+
+                    return false;
+                }
+            axios({
+                method : 'patch',
+                url : '/profile/edit',
+                data : {
+                    id : form.id.value,
+                    pw : form.pw.value,
+                    name : form.name.value
+                }
+            })
+            // .then((rep) => {return rep.data;} ) => 없어도 잘 돌아가는데... 뭘까
+            .then((data)=>{
+                if (data) {
+                    alert('회원정보 수정 완료')
+                }
+                else {
+                    alert('오류 발생')
+                }
+            });
+        }
+
+        function Delete() {
+            let form = document.querySelector("#form_profile")
+            if ( !form.checkValidity() ) {
+                    form.reportValidity();
+
+                    return false;
+                }
+            axios({
+                method : 'delete',
+                url : '/profile/delete',
+                data : {
+                    id : form.id.value,
+                }
+            })
+            .then((res)=>{
+                if (res) {
+                    alert('회원탈퇴 완료')
+                    document.location.href = '/login'
+                }
+                else {
+                    alert('오류 발생')
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <h3>Your Profile</h3>
+    <form id="form_profile">
+        <div> ID : <input type="text" name="id" value="<%=data.id%>" readonly></div>
+        <div> PW : <input type="password" name="pw" value="<%=data.pw%>" required></div>
+        <div> NAME : <input type="text" name="name" value="<%=data.name%>" required></div>
+        <!-- 로그인 성공 시 Profile페이지를 렌더하고 데이터베이스에서 해당 값을 찾은 결과 데이터를 받아옴
+        각각의 value에 대입하여 사용 -->
+        <button type="button" onclick="edit()">Edit</button>
+        <button type="button" onclick="Delete()">Delete</button>
+    </form>
+</body>
+</html>

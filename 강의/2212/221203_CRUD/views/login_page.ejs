@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wlecome !</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        /* .d-none {
+            display: none;
+        } */
+    </style>
+    <script>
+        function login() {
+            let form = document.querySelector("#login_form")
+            axios({
+                method : 'post',
+                url : '/login',
+                data : {
+                    id : form.id.value,
+                    pw : form.pw.value
+                }
+            })
+            .then((rep) => {return rep.data;}) // rep = 
+            .then((data) => {
+                if (data == true) {
+                    alert ('로그인 성공');
+                    let form_info = document.querySelector("#form_info");
+                    form_info.id.value = form.id.value; //hidden 속성에 원래 form id 값을 저장해두기
+                    form_info.submit();//서버에 id 제출 => req.body.id = form_info.id.value = form.id.value
+                }//로그인 성공하면 서버에 id값을 전송 -> model에서 id에 해당하는 데이터 있는지 검사 
+                // -> controller에서 결과값이 있는 경우 Profile 페이지를 렌더하고 결과값을 클라이언트로 전송해줌
+                // -> Profile 페이지 views에서 해당 데이터 사용하여 표시
+                else {
+                    alert ('로그인 실패');
+                    form.reset();
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <h3>Please Login.</h3>
+    <form id="form_info" action="/profile" method="post">
+        <input type="hidden" name="id">
+    </form>
+    <form id="login_form">
+        <div> ID : <input type="text" name="id" required></div>
+        <div> PW : <input type="password" name="pw" required></div>
+        <div>
+            <button type="button" onclick="login()">Login</button>
+        </div>
+    </form>
+
+    <div>
+        <a href="/register">Register</button>
+    </div>
+</body>
+</html>

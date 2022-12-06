@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wlecome !</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        function register() {
+            let form = document.querySelector("#register_form")
+            axios({
+                method : 'post',
+                url : '/register',
+                data : {
+                    id : form.id.value,
+                    pw : form.pw.value,
+                    name : form.name.value
+                }
+            })
+            .then((res) => {
+                if(res.data == true) {
+                    alert ("회원가입 완료")
+                    document.location.href = '/login'
+                }
+                else {
+                    alert ("회원가입 실패 - 아이디/패스워드를 다시 한 번 확인해주십시오.");
+                    form.reset();
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <h3>Please Join us!</h3>
+    <form id="register_form">
+        <div> ID : <input type="text" name="id"></div>
+        <div> PW : <input type="password" name="pw"></div>
+        <div> NAME : <input type="text" name="name"></div>
+    </form>
+    <div>
+        <button type="button" onclick="register()">Register</button>
+    </div>
+    <div>
+        <a href="/login">Login</button>
+    </div>
+</body>
+</html>

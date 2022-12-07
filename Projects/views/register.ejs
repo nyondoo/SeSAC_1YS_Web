@@ -6,20 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>알바 등록</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         function register() {
             let form = document.querySelector("#workRegi");
             axios({
                 method: 'post',
-                url: '/success',
+                url: '/register',
                 data: {
-                    work: form.work.value,
+                    name: form.name.value,
                     time: form.time.value,
                     attend: form.attend.value
                 }
             })
             .then((res)=>{
-                document.querySelector('#regiMsg').innerText = res.data.msg;
+                if (res) { 
+                    alert ('등록이 완료되었습니다.')
+                    document.location.href = '/home'
+                }
+                
+                else { 
+                    alert ('등록실패! 다시 시도해 주십시오.')
+                    document.location.href = '/register'
+                }
             })
         };
     </script>
@@ -28,24 +37,18 @@
 <body>
     <fieldset style="width: 300px;">
         <legend>알바 등록</legend>
-        <form id="workRegi" action="/success" method="post">
-            등록할 이름 : <input type="text" name="work" required placeholder="nickname"><br><!--sql에서 자동생성되도록 할 것-->
+        <form id="workRegi" action="/register" method="post">
+            등록할 이름 : <input type="text" name="name" required placeholder="nickname"><br><!--sql에서 자동생성되도록 할 것-->
             일일 근무시간 : <input type="number" min="1" max="8" name="time" required><br>
             <fieldset>
                 <legend>출근 횟수</legend>
-                <input type="radio" name="attend" value="1">주 1회
-                <input type="radio" name="attend" value="2">주 2회
-                <input type="radio" name="attend" value="3">주 3회
-                <input type="radio" name="attend" value="4">주 4회
-                <input type="radio" name="attend" value="5">주 5회
-                <input type="radio" name="attend" value="6">주 6회
-                <input type="radio" name="attend" value="7">매일
+                주 <input type="number" name="attend" min="1" max="7">회
             </fieldset>
+            <button onclick="register()">등록</button>
         </form>
-        <br>
-        <button onclick="register()">등록</button>
     </fieldset>
-    <br><button type="button" onclick="location.href='/home'">홈</button>
-    <div id="regiMsg"></div>
+    <div>
+        <button type="button" onclick="location.href='/home'">홈</button>
+    </div>
 </body>
 </html>

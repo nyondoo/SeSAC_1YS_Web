@@ -15,15 +15,9 @@ router.get('/home', controller.home);
 
 //render register page
 router.get('/register', controller.register);
-// app.post('/register', (req, res)=>{
-//     res.render('register');
-// })
+router.post('/register', controller.register_work);
 
-//render success page
-router.post('/success', controller.success);
-// app.post('/success', (req, res)=>{
-//     res.render('success',
-//     { data : req.body });
-// })
+router.get('/admin', controller.admin);
+router.post('/admin', controller.inq_work);
 
 module.exports = router;

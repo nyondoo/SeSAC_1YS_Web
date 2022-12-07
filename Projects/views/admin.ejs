@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>알바 관리</title>
+    <script>
+        function inquire() {
+            let form = document.querySelector("#inquiry_form")
+            let info = {
+                name: $("#select_work option:selected").val()
+            }
+            axios({
+                method : 'post',
+                url : '/admin',
+                data : info
+            })
+            .then((res)=>{
+                form.name.value = res.data.name;
+                form.time.value = res.data.time;
+                form.attend.value = res.data.attend;
+            })
+        }
+    </script>
+</head>
+<body>
+    <form id="inquiry_form">
+        <select id="select_work">
+            <%for (let i = 0; i < data.length; i++) {%>
+                <option><%=data[i].name%></option>
+            <%}%> 
+        </select>
+
+        <button type="button" onclick="inquire()">조회</button>
+
+        <div class="d-none content">
+            <div>업무명 : <input type="text" name="name"></div>
+            <div>일일 근무시간 : <input type="number" name="time"> 시간</div>
+            <div>주 출근횟수 : 주 <input type="number" min="1" max="7" name="attend">회</div>
+        </div>
+
+        <button type="button">취소</button>
+        <button type="button">수정</button>
+        <button type="button">삭제</button>
+    </form>
+    
+</body>
+</html>

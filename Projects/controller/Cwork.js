@@ -10,10 +10,21 @@ exports.home = (req, res) => {
 exports.register = (req, res) => {
     res.render('register')
 };
+exports.register_work = (req, res) => {
+    Works.register_work(req.body, function(){
+        res.send(true)
+    });
+}
 
-//localhost:8080/success
-exports.success = (req, res) => {
-    Works.register_work(req.body, (name) =>{
-        res.send({msg: `${name}의 등록이 완료되었습니다.`});
-    })
+exports.admin = (req, res) => {
+    Works.get_work((result)=>{
+        res.render('admin', {data: result})
+    });
+
+};
+exports.inq_work = (req, res) => {
+    Works.inq_work(req.body.name, (result)=>{
+        console.log(result)
+        res.send({data: result})
+    });
 };

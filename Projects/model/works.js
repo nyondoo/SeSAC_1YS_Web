@@ -10,10 +10,10 @@ const cnn = mysql.createConnection({
 })
 
 //등록 시 새로 등록된 데이터를 데이터베이스에 추가, 표시하기 위해 사용
-exports.register_work = (info, cb) => {
+exports.register_work = (data, cb) => {
     // info = req.body, cb = 콜백함수
-    let sql = `insert into works(name, time, attend) values('${info.name}', '${info.time}', '${info.attend}')`
-    cnn.query(sql, (err, rows)=>{
+    let sql = `insert into works(work, time, attend) values('${data.work}', '${data.time}', '${data.attend}')`
+    cnn.query(sql, (err)=>{
         if (err) throw err;
         cb();
     });
@@ -28,7 +28,7 @@ exports.get_work = (cb) => {
 }
 
 exports.inq_work = (data, cb) => {
-    let sql = `SELECT name, time, attend FROM works WHERE name='${data}';`
+    let sql = `SELECT work, time, attend FROM works WHERE work='${data}';`
     cnn.query(sql, (err, rows) => {
         if (err) throw err;
         cb(rows);

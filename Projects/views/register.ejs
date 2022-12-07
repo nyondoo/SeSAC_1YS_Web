@@ -14,7 +14,7 @@
                 method: 'post',
                 url: '/register',
                 data: {
-                    name: form.name.value,
+                    work: form.work.value,
                     time: form.time.value,
                     attend: form.attend.value
                 }
@@ -24,7 +24,6 @@
                     alert ('등록이 완료되었습니다.')
                     document.location.href = '/home'
                 }
-                
                 else { 
                     alert ('등록실패! 다시 시도해 주십시오.')
                     document.location.href = '/register'
@@ -38,7 +37,7 @@
     <fieldset style="width: 300px;">
         <legend>알바 등록</legend>
         <form id="workRegi" action="/register" method="post">
-            등록할 이름 : <input type="text" name="name" required placeholder="nickname"><br><!--sql에서 자동생성되도록 할 것-->
+            등록할 이름 : <input type="text" name="work" required placeholder="nickname"><br><!--sql에서 자동생성되도록 할 것-->
             일일 근무시간 : <input type="number" min="1" max="8" name="time" required><br>
             <fieldset>
                 <legend>출근 횟수</legend>

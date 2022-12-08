@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN PAGE</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h3>로그인을 해주세요.</h3>
+    <form id="login_form">
+        <div>
+            ID : <input type="text" name="id">
+        </div>
+        <div>
+            PW : <input type="password" name="pw">
+        </div>
+        <button type="button" onclick="login()">login</button>
+    </form>
+
+    <script>
+        function login() {
+            let form = document.querySelector("#login_form")
+            axios({
+                method : 'post',
+                url : '/goLogin',
+                data: {
+                    id : form.id.value,
+                    pw : form.pw.value
+                }
+            })
+            .then((res)=>{
+                if(res.data == true) {
+                    alert('로그인 성공');
+                    document.location.href = '/main'
+                }
+                else {
+                    alert('로그인 실패');
+                    document.location.href = '/goLogin'
+                }
+            })
+        }
+    </script>
+</body>
+</html>

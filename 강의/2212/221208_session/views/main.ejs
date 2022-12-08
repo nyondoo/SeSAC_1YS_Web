@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAIN PAGE</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <style>
+        .d-none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h3>환영합니다.</h3>
+    <div class="first">
+        <a href="/goLogin">로그인</a><br>
+        <a>회원가입</a>
+    </div>
+    <div class="second d-none">
+        <button type="button" onclick="logout()">로그아웃</button>
+    </div> 
+
+    <script>
+        if ('<%=isLogin%>' !== "false") { // 문자열로...
+        $('.second').removeClass('d-none');
+        $('.first').addClass('d-none');
+        document.querySelector("h3").innerText = '뇬두님 환영합니다';
+        }
+        
+        
+
+        function logout() {
+            axios({
+                method : 'delete',
+                url : '/goLogout'
+            })
+            .then(()=>{window.location.reload()}) // 새로고침
+        }
+    </script>
+
+</body>
+</html>

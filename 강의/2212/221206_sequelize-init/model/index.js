@@ -26,6 +26,31 @@ db.Sequelize = Sequelize;
 db.Visitor = require('./Visitor')(sequelize, Sequelize)//함수 불러오고 실행시키기. 모델 정의가 함수 안에 있기 때문에 함수를 실행시켜야 함
 // Visitor.js에서 정의해준 Sequelize모델을 불러옴
 db.User = require('./User')(sequelize, Sequelize);
+db.Product = require('./Product')(sequelize, Sequelize);
+db.Payment = require('./Payment')(sequelize, Sequelize);
+
+//foreign key 연결
+db.User.hasMany(db.Payment, {
+    foreignKey : 'user_id',//foreign key를 거는 컬럼. Payment table의 user_id컬럼
+    sourceKey : 'user_id',//참조하는 컬럼. User table의 user_id컬럼
+    onDelete : 'cascade'
+});
+db.Payment.belongsTo(db.User, { //db.User를 참조하고 있다~
+    foreignKey : 'user_id',
+    sourceKey : 'user_id',
+    onDelete : 'cascade'
+}); //=> 하나 걸 때 두개의 함수 사용
+
+db.Product.hasMany(db.Payment, {
+    foreignKey : 'product_id',//foreign key를 거는 컬럼. Payment table의 payment_id컬럼
+    sourceKey : 'product_id',//참조하는 컬럼. User table의 payment_id컬럼
+    onDelete : 'cascade'
+});
+db.Payment.belongsTo(db.Payment, {  
+    foreignKey : 'product_id',
+    sourceKey : 'product_id',
+    onDelete : 'cascade'
+});
 
 //다음과 같이 됨
 // db = {

@@ -14,31 +14,35 @@
     </style>
 </head>
 <body>
+    <% if (!isLogin) { %> <!--isLogin이 false일 경우-->
     <h3>환영합니다.</h3>
-    <div class="first">
+    <div>
         <a href="/goLogin">로그인</a><br>
         <a>회원가입</a>
     </div>
-    <div class="second d-none">
-        <button type="button" onclick="logout()">로그아웃</button>
-    </div> 
+    <% } else { %>
+        <div>
+            <div><%=id%>님 환영합니다.</div>
+            <!-- <button type="button" onclick="logout()">로그아웃</button> -->
+            <a href="/goLogout">로그아웃</a>
+        </div>
+    <% } %>
+
 
     <script>
-        if ('<%=isLogin%>' !== "false") { // 문자열로...
-        $('.second').removeClass('d-none');
-        $('.first').addClass('d-none');
-        document.querySelector("h3").innerText = '뇬두님 환영합니다';
-        }
+        // if ('<%=isLogin%>' !== "false") { // 문자열로...
+        // $('.second').removeClass('d-none');
+        // $('.first').addClass('d-none');
+        // document.querySelector("h3").innerText = '뇬두님 환영합니다';
+        // }
         
-        
-
-        function logout() {
-            axios({
-                method : 'delete',
-                url : '/goLogout'
-            })
-            .then(()=>{window.location.reload()}) // 새로고침
-        }
+        // function logout() {
+        //     axios({
+        //         method : 'delete',
+        //         url : '/goLogout'
+        //     })
+        //     .then(()=>{window.location.reload()}) // 새로고침
+        // }
     </script>
 
 </body>

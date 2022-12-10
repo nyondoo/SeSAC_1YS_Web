@@ -19,7 +19,7 @@
         </div>
         <button type="button" onclick="login()">login</button>
     </form>
-
+    <!--type을 submit으로 하게 되면 일반 폼 전송이 됨. 동적 폼 전송을 위해서 그냥 button으로-->
     <script>
         function login() {
             let form = document.querySelector("#login_form")
@@ -34,11 +34,11 @@
             .then((res)=>{
                 if(res.data == true) {
                     alert('로그인 성공');
-                    document.location.href = '/main'
+                    window.location.href = '/main'
                 }
                 else {
                     alert('로그인 실패');
-                    document.location.href = '/goLogin'
+                    form.reset();
                 }
             })
         }

@@ -1,0 +1,9 @@
+{
+    "development" : {
+        "host": "localhost",
+        "database" : "sesac_test",
+        "username" : "user", 
+        "password": "ndsqlpwd",
+        "dialect" : "mysql"
+    }
+}

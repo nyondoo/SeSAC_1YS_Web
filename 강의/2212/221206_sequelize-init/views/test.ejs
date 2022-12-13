@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <form>
+        <div><%=for i%></div>
+        <button class="S" onclick="next()"><%=S답변%></button>
+        <button class="N" onclick="next()"><%=N답변%></button>
+    </form>
+
+    <script>
+        function next() {
+            axios({
+                method : post,
+                url : test,
+                data : {
+
+                }
+            })
+        }
+    </script>
+</body>
+</html>

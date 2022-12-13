@@ -1,13 +1,37 @@
-//DB 데이터 처리
+//table 생성 sql문
+// create table works (
+// 	work varchar(100) not null primary key,
+//     time int not null,
+//     attend int not null
+//     );
+const Works = (Sequelize, DataTypes) => { // Works라는 함수를 실행하면 Sequelize를 정의한다
+    return Sequelize.define(
+        "works",
+        {
+            work : {
+                type : DataTypes.STRING(10),
+                allowNull : false,
+                primaryKey : true
+            },
+            time : {
+                type : DataTypes.INTEGER,
+                allowNull : false
+            },
+            attend : {
+                type : DataTypes.INTEGER,
+                allowNull : false
+            }
+        },
+        {
+            tablename : "works",
+            freezeTableName: true,
+            timestamps : false
+        }
+    )
+}
+//테이블 생성
+module.exports = Works;
 
-//mysql 사용을 위한 설정
-const mysql = require('mysql');
-const cnn = mysql.createConnection({
-    host: 'localhost',
-    user: 'user', 
-    password: 'ndsqlpwd',
-    database: 'sesac_test'
-})
 
 //등록 시 새로 등록된 데이터를 데이터베이스에 추가, 표시하기 위해 사용
 exports.register_work = (data, cb) => {

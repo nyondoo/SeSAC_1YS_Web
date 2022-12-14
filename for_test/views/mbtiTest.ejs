@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.2.js" integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI Test Page</title>
+</head>
+<body>
+    <div>
+        <% for (let i = 0; i < data.length; i++) { %>
+        <div class="question"><%= data[i].q %></div>
+            <% for (let j = 0; j < data[i].a.length; j++) { %>
+                <div class="answer">
+                    <label for="<%= data[i].a[j].type %>">
+                        <button onclick="answer()"><%= data[i].a[j].answer %></button>
+                    </label>
+                </div>
+            <% } %>
+            <br>
+        <% } %>
+    </div>
+<script>
+    function answer() {
+        let a = this.parentNode
+        console.log(a);
+    }
+</script>
+    <!-- <div>
+        <%=data[0].a[0].answer%>
+        <%=data[0].a[1].answer%>
+    </div> -->
+</body>
+</html>

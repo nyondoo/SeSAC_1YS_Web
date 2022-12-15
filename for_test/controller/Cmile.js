@@ -16,3 +16,8 @@ exports.test = (req, res) =>{
     console.log(qnaList);
     res.render('mbtiTest', {data: qnaList});
 }
+
+exports.test_type = (req, res) =>{
+    console.log(req.body.type);
+    res.send(true);
+}

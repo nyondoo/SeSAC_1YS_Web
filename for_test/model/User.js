@@ -16,48 +16,48 @@ const User = (Sequelize, DataTypes)=>{
                 allowNull: false
             },
             mbti_ok: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING(5),
                 allowNull: false,
             },
             auth: {
-                type: DataTypes.STRING(50),
+                type: DataTypes.STRING(5),
                 allowNull: false,
             },
             mbti: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
+                type: DataTypes.STRING(4),
+                allowNull: true,
             },
             E: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             I: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             N: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             S: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             F: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             T: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             P: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             J: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             }
 
         },

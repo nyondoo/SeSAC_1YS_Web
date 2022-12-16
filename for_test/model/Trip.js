@@ -8,7 +8,7 @@ const Trip = (Sequelize, DataTypes)=>{
                 primaryKey: true,
             },
             mbti: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING(4),
                 allowNull: false,
             },
             spot: {

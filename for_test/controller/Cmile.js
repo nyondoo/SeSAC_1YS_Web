@@ -38,27 +38,37 @@ exports.idread = async (req,res)=>{
   }
 
 exports.test_jp = (req, res) =>{
-    res.render('jp_test');
+  res.render('jp_test');
 }
 
 exports.type_jp = async (req, res) =>{
-    console.log('select type : ', req.body.type);
-    //값을 받아서 그대로 배열에 추가
-    const arr_jp = [];
-    if (req.body.type == 'Y') {
-        arr_jp.push(req.body.type);
+  console.log('select type : ', req.body.type);
+  
+  //유형별 개수를 변수에 담기
+  let Jcount = 0;
+  for (let i = 0; i < req.body.type.length; i++) {
+    if (req.body.type[i] === 'J') {
+      Jcount++;
     }
-    else arr_jp.push(req.body.type);
-    
-    //값Y의 개수, 값P의 개수를 변수에 담기
-    let Jcount = arr_jp.filter(element => 'Y' === element).length;
-    let Pcount = arr_jp.filter(element => 'N' === element).length;
-    //
-    let data = {
-        J : Jcount,
-        P : Pcount
+  }
+
+  let Pcount = 0;
+  for (let i = 0; i < req.body.type.length; i++) {
+    if (req.body.type[i] === 'P') {
+      Pcount++;
     }
-    let result = await User.create(data);
-    console.log( 'result : ', result)
-    res.render('ei_test')
+  }
+
+  console.log('J : ', Jcount, 'P : ', Pcount)
+
+  // //DB에 값 등록 (User2 table)
+  // let data = {
+  //     J : Jcount,
+  //     P : Pcount
+  // }
+  // let result = await User.create(data);
+  // console.log( 'result : ', result)
+
+  // //유형검사 결과
+  // res.render('ei_test')
 }

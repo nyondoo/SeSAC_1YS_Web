@@ -1,9 +1,0 @@
-{
-    "development" : {
-        "host": "localhost",
-        "database" : "mileeasy",
-        "username" : "mileuser", 
-        "password": "@mile",
-        "dialect" : "mysql"
-    }
-}

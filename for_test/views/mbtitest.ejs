@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>MBTI Test Page</title>
 
-    <script type="text/javascript" src="/static/type_jp.json"></script>
+    <script type="text/javascript" src="/static/qnalist.json"></script>
 </head>
 <body>
     <form>
@@ -16,6 +16,7 @@
             <div id="qBox"></div>
             <div id="aBox"></div>
         </section>
+        <input type="hidden" id="select">
     </form>
     <script>
         var no = 0;
@@ -25,10 +26,14 @@
             if ( no < qna.length - 1 ) {
                 axios({
                     method : 'post',
-                    url : '/test_type',
+                    url : '/mbtitest',
                     data : {
                         type : arr
                     }
+                })
+                .then((res)=>{
+                    console.log(res.data);
+                    document.getElementById("select").value = res.data;
                 })
                 no++;
                 showQuestion();
@@ -48,6 +53,16 @@
 
         showQuestion();
         
+        function viewResult() {
+            let select = document.getElementById("select").value
+            axios({
+                    method : 'post',
+                    url : '/mbtiresult',
+                    data : {
+                        data : select
+                    }
+                })
+        }
     </script>
 </body>
 </html>

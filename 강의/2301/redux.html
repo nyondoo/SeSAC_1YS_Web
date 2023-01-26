@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
+</head>
+<body>
+    <div>
+        이름 : 
+        <input type="text" id="name"/>
+        <br />
+        내용 : 
+        <input type="text" id="content"/>
+        <button onclick="
+        store.dispatch({type: 'WRITE', name: document.getElementById('name').value, content: document.getElementById('content').value})
+        ">작성</button>
+    </div>
+    <hr />
+    <table border="1" cellspacing="1" cellpadding="5 20 5 20">
+        <tr>
+            <td>No.</td>
+            <td>이름</td>
+            <td>내용</td>
+            <td>삭제</td>
+        </tr>
+    </table>
+    <script>
+        function reducer(state, action) {
+            //state 변경
+            if (action.type == 'WRITE') return {name: action.name, content: action.content}; 
+            return state;
+        }
+
+        let store = Redux.createStore(reducer);
+
+        function addTr(){
+            //행 추가
+            let state = store.getState();
+            document.getElementsByTagName('table').innerHTML += `
+            <tr>
+                <td>${state.no + 1}</td>
+                <td>${state.name}</td>
+                <td>${state.content}</td>
+                <td><button onclick="delTr()">삭제</button></td>
+            </tr>`;
+            console.log(state)
+        }
+
+        function delTr(){
+            //행 삭제
+            
+        }
+
+        store.subscribe(addTr);
+    </script>
+</body>
+</html>

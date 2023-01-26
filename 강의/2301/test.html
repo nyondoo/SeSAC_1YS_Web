@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <style>
+            .container {
+                border: 3px solid black;
+                padding: 10px;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
+    </head>
+    <body>
+        <div id="red">
+            <div class="container" id="component_red">
+                <h1>red</h1>
+                <input type="button" value="실행" onclick="
+                    store.dispatch({type: 'CHANGE', color: 'red'})
+                "><!-- 디스패치는 리듀서를 실행, 리듀서는 state값을 변경 -->
+            </div>
+        </div>
+        <div id="green">
+            <div class="container" id="component_green">
+                <h1>green</h1>
+                <input type="button" value="실행" onclick="store.dispatch({type: 'CHANGE', color: 'green'})">
+            </div>
+        </div>
+        <div id="yellow">
+            <div class="container" id="component_yellow">
+                <h1>yellow</h1>
+                <input type="button" value="실행" onclick="store.dispatch({type: 'CHANGE', color: 'yellow'})">
+            </div>
+        </div>
+        <script>
+            function reducer(state = {color:'orange'}, action) {// 리듀서의 첫번째 인자는 state, 두번째 인자는 action. state기본값을 설정해줌
+                if (action.type == 'CHANGE') return {color:action.color};
+                return state;
+            }
+            
+            let store = Redux.createStore(reducer);
+
+            function red(){
+                let state = store.getState();
+                document.querySelector('#component_red').style.backgroundColor = state.color;
+                
+            }
+            function green(){
+                let state = store.getState();
+                document.querySelector('#component_green').style.backgroundColor = state.color;
+                
+            }
+            function yellow(){
+                let state = store.getState();
+                document.querySelector('#component_yellow').style.backgroundColor = state.color;
+                
+            }
+
+            //인자로 위에서 선언한 함수를 받음.
+            store.subscribe(red);
+            store.subscribe(green);
+            store.subscribe(yellow);
+            
+        </script>
+    </body>
+</html>

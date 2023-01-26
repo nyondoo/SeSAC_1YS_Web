@@ -19,11 +19,11 @@ const initState = {
     },
   ],
 };
-
-let counts = initState.list.length;
-initState.nextID = counts;
 // = initState[nextID] = counts
 //액션타입 정의하기
+let counts = initState.list.length;
+initState.nextID = counts;
+
 const CREATE = 'todo/CREATE';
 const DONE = 'todo/DONE';
 

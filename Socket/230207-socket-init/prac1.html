@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+    <title>230207 실습1</title>
+</head>
+<body>
+    <!-- <button onclick="hello()">hello</button>
+    <button onclick="study()">study</button>
+    <button onclick="bye()">bye</button> -->
+    <button onclick="btnSend('hello')">hello</button>
+    <button onclick="btnSend('study')">study</button>
+    <button onclick="btnSend('bye')">bye</button>
+
+    <script>
+        let socket = io.connect();
+
+        function hello() {
+            socket.emit('hello', 'hello')
+        };
+
+        function study() {
+            socket.emit('study', 'study');
+        };
+
+        function bye() {
+            socket.emit('bye', 'bye');
+        };
+
+        socket.on('response1', (data) => {
+             console.log(`${data.msg}`);
+        });
+
+        //함수 하나로 구현하기
+        function btnSend(msg) {
+            socket.emit('send', msg);
+        }
+
+        socket.on('response', (data) => {
+                console.log(data);
+        })
+
+    </script>
+</body>
+</html>

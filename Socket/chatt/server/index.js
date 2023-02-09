@@ -17,8 +17,6 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   console.log('Server Socket Connected', socket.id);
 
-  io.emit('notice', `${socket.id}님이 입장하셨습니다.`);
-
   socket.emit('welcome', { msg: 'welcome' });
 
   socket.on('response', (str) => {

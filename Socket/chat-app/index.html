@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <title>socket.io</title>
+    <script
+      src="https://cdn.socket.io/4.5.4/socket.io.min.js"
+      integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+        div {
+            border-radius: 10px;
+        }
+      .container {
+        width: 500px;
+        height: 600px;
+        padding: 20px;
+        background-color:antiquewhite;
+        overflow-y: auto;
+      }
+      .notice {
+        text-align: center;
+        color: grey;
+      }
+      .container div div {
+        display: inline-block;
+        padding: 10px;
+      }
+      .container div {
+        margin-bottom: 10px;
+      }
+      .my-chat {
+        text-align: right;
+      }
+      .my-chat div {
+        background-color:  #58FA82;
+      }
+      .other-name {
+        font-size: 12px;
+        display: block;
+        color: #7b7672;
+      }
+      .other-chat {
+        text-align: left;
+      }
+      .other-chat div {
+        background-color: white;
+      }
+      .my-dm {
+        text-align: right;
+      }
+      .dm div {
+        background-color:  #f28389;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="notice">공지 메세지</div>
+      <div class="my-chat">
+        <div>내가 보낸 메세지</div>
+      </div>
+      <div class="other-chat">
+        <span class="other-name">남의id</span>
+        <div>남이 보낸 메세지</div>
+      </div>
+      <div class="dm my-dm">
+        <div>(속닥속닥) 내가 보낸 디엠</div>
+      </div>
+      <div class="dm">
+        <div>(속닥속닥) 남이 보낸 디엠</div>
+      </div>
+    </div>
+    <select id="members">
+      <option value="전체">전체</option>
+    </select>
+    <input type="text" id="msg_box" onkeydown="enter()" />
+    <button onclick="btnSend()">전송</button>
+
+    <script>
+      const username = prompt('닉네임을 입력해주세요.');
+      const socket = io.connect();
+
+      socket.on("connect", () => {
+        console.log("server connected");
+        socket.emit('username', username);
+      });
+
+      let my_id = '';
+      socket.on('info', (socketID) => {
+        my_id = socketID;
+      });
+
+      socket.on('notice', (msg) => {
+            const container = document.querySelector('.container');
+            const div = document.createElement('div');
+            div.classList.add('notice');
+            div.textContent = msg;
+            container.appendChild(div)
+        })
+
+        socket.on('newMSG', (json) => {
+            const container = document.querySelector('.container');
+            const outer_div = document.createElement('div');
+            const inner_div = document.createElement('div');
+            inner_div.textContent = `${json.username} : ${json.msg}`;
+            
+
+            if (my_id == json.from) {
+                if (json.is_dm) outer_div.classList.add('my-dm', 'dm');
+                else outer_div.classList.add('my-chat');
+            } else {
+                if (json.is_dm) outer_div.classList.add('dm')
+                outer_div.classList.add('other-chat');
+            }
+            outer_div.appendChild(inner_div);
+            container.appendChild(outer_div);
+        })
+
+        socket.on('list', (list) => {
+            console.log(list);
+            const member_list = document.getElementById('members');
+            // select 안에 firstChild가 있으면 뒤를 실행
+            // 마지막 요소를 지우겠다.
+            // = 하나도 남지 않을 때까지 안의 요소를 지운다
+            while(member_list.firstChild) member_list.removeChild(member_list.lastChild)
+            const option = document.createElement('option');
+            option.text = '전체';
+            option.value = '전체';
+            member_list.appendChild(option);
+            console.log(Object.entries(list));
+            for (let [key, value] of Object.entries(list)) {
+                console.log(key, value);
+                const option = document.createElement('option');
+                option.text = value;
+                option.value = value;
+                member_list.appendChild(option);
+            }
+        })
+      const enter = () => {
+        if (event.keyCode == 13) {
+          btnSend();
+        }
+      };
+
+      const btnSend = () => {
+        const input = document.getElementById('msg_box');
+        const to = document.getElementById('members').value;
+        //{to} = {to : to}
+        socket.emit('send', {msg : input.value, to});
+        input.value = ''
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+[AWS 계정]
+nyondooev@gamil.com	
+Ndawspwd1129
+
+[key]
+nyondoo_web_key
+
+[Public IP]
+43.201.17.158
+
+[mySQL Server]
+root
+ndAWSpwd

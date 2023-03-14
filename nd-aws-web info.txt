@@ -9,5 +9,6 @@ nyondoo_web_key
 43.201.17.158
 
 [mySQL Server]
-root
-ndAWSpwd
+host : nd-aws-web.cunhuszknipu.ap-northeast-2.rds.amazonaws.com
+admin
+ndawspwd

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<form id="signup_form" method="post" style="margin-right: 20px">
+    <fieldset>
+  아이디 <input type="text" name="id">
+    <br>
+  비밀번호 <input type="password" name="pw">
+    <br>
+  <br>
+  이름 <input type="text" name="name">
+  <button type="button" onclick="signup();">회원가입</button>
+</fieldset>
+</form>
+</body>
+<script>
+        var form = document.getElementById('signup_form');
+        function signup() {
+        axios.post(`/axios/signup`, {
+        id: form.id.value,
+        pw: form.pw.value,
+        name: form.name.value
+        })
+        .then((res)=>{
+            alert(res.data);
+            window.location.href = "/axios/signin"
+        });
+    }
+</script>
+</html>

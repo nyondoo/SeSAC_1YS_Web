@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function voResponse1() {
+        var form = document.getElementById('form_vo1');
+        axios.get(`/axios/vo/response1?name=${form.name.value}&age=${form.age.value}`)
+        .then((res)=>{
+            console.log( res );
+            console.log( 'dtoResponse1 : ', res.data );
+        });
+    }
+    function voResponse2() {
+        var form = document.getElementById('form_vo1');
+        axios.get(`/axios/vo/response2?name=${form.name.value}&age=${form.age.value}`)
+        .then((res)=>{
+            console.log( res );
+            console.log( 'voResponse2 : ', res.data );
+        });
+    }
+    function voResponse3() {
+        var form = document.getElementById('form_vo2');
+        axios.post(`/axios/vo/response3`, {name: form.name.value, age: form.age.value})
+        .then((res)=>{
+            console.log( res );
+            console.log( 'voResponse3 : ', res.data );
+        });
+    }
+    function voResponse4() {
+        var form = document.getElementById('form_vo2');
+        axios.post(`/axios/vo/response4`, {name: form.name.value, age: form.age.value})
+        .then((res)=>{
+            console.log( res );
+            console.log( 'voResponse4 : ', res.data );
+        });
+    }
+    function voResponse5() {
+        var form = document.getElementById('form_vo2');
+        axios.post(`/axios/vo/response5`, {name: form.name.value, age: form.age.value})
+        .then((res)=>{
+            console.log( res );
+            console.log( 'voResponse5 : ', res.data  );
+        });
+    }
+</script>
+
+<br>
+<hr>
+<h2>VO 이용하기 - axios</h2>
+<div style="display: flex">
+  <form id="form_vo1" style="margin-right: 20px;">
+    <h3>Get ( 일반 ) - axios</h3>
+    이름 : <input type="text" name="name">
+    <br>
+    나이 : <input type="text" name="age">
+    <br>
+    <button type="button" onclick="voResponse1();">GET ( 일반 ) - axios</button>
+    <button type="button" onclick="voResponse2();">Get ( VO ) - axios</button>
+  </form>
+  <form id="form_vo2" style="margin-right: 20px;">
+    <h3>Post ( 일반 ) - axios</h3>
+    이름 : <input type="text" name="name">
+    <br>
+    나이 : <input type="text" name="age">
+    <br>
+    <button type="button" onclick="voResponse3();">Post ( 일반 ) - axios</button>
+    <button type="button" onclick="voResponse4();">Post ( VO ) - axios ( RequestBody X )</button>
+    <button type="button" onclick="voResponse5();">Post ( VO ) - axios ( RequestBody O )</button>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+</head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<body>
+<h3 th:text="${name}+'님의 마이페이지'" id="id"></h3>
+<p th:text="'아이디: '+${id}"></p>
+<input type="text" name="name" id="name">
+<button onclick="editAccount()">이름 수정</button>
+<button onclick="dropAccount()">회원 탈퇴</button>
+</body>
+<script>
+        function dropAccount() {
+        axios.post(`/axios/drop`, {
+        id: document.getElementById("id").innerTEXT,
+        })
+        .then((res)=>{
+            alert(res.data);
+            window.location.href = "/axios/signup"
+        });
+    }
+    function editAccount() {
+        axios.post(`/axios/edit`, {
+        id: document.getElementById("id").innerTEXT,
+        name: document.getElementById("name").value
+        })
+        .then((res)=>{
+            alert(res.data);
+            window.location.href = "/axios/mypage"
+        });
+    }
+</script>
+</html>

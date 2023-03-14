@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br>
+<hr>
+<h2>DTO 이용하기 - axios</h2>
+<div style="display: flex">
+  <form action="/axios/response1" method="get" style="margin-right: 20px;" id="form_dto1">
+    이름 : <input type="text" name="name">
+    <br>
+    나이 : <input type="text" name="age">
+    <br>
+    <button type="button" onclick="dtoResponse1();">GET ( 일반 ) - axios</button>
+    <button type="button" onclick="dtoResponse2();">Get ( DTO ) - axios</button>
+  </form>
+  <form action="/axios/response3" method="post" style="margin-right: 20px;" id="form_dto2">
+    <h3>Post ( 일반 ) - axios</h3>
+    이름 : <input type="text" name="name">
+    <br>
+    나이 : <input type="text" name="age">
+    <br>
+    <button type="button" onclick="dtoResponse3();">Post ( 일반 ) - axios</button>
+    <button type="button" onclick="dtoResponse4();">Post ( DTO ) - axios ( RequestBody X )</button>
+    <button type="button" onclick="dtoResponse5();">Post ( DTO ) - axios ( RequestBody O )</button>
+  </form>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function dtoResponse1() {
+        var form = document.getElementById('form_dto1');
+        axios.get(`/axios/response1?name=${form.name.value}&age=${form.age.value}`)
+        .then((res)=>{
+            console.log( res );
+            console.log( 'dtoResponse1 : ', res.data );
+        });
+    }
+    function dtoResponse2() {
+        var form = document.getElementById('form_dto1');
+        axios.get(`/axios/response2?name=${form.name.value}&age=${form.age.value}`)
+        .then((res)=>{
+            console.log( res );
+            console.log( 'dtoResponse2 : ', res.data );
+        });
+    }
+    function dtoResponse3() {
+        var form = document.getElementById('form_dto2');
+        axios.post(`/axios/response3`, {name: form.name.value, age: form.age.value})
+        .then((res)=>{
+            console.log( res );
+            console.log( 'dtoResponse3 : ', res.data );
+        });
+    }
+    function dtoResponse4() {
+        var form = document.getElementById('form_dto2');
+        axios.post(`/axios/response4`, {name: form.name.value, age: form.age.value})
+        .then((res)=>{
+            console.log( res );
+            console.log( 'dtoResponse1 : ', res.data );
+        });
+    }
+    function dtoResponse5() {
+        var form = document.getElementById('form_dto2');
+        axios.post(`/axios/response5`, {name: form.name.value, age: form.age.value})
+        .then((res)=>{
+            console.log( res );
+            console.log( 'dtoResponse5 : ', res.data );
+        });
+    }
+</script>
+</body>
+</html>

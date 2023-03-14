@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p th:text="'이름: ' + ${name}">.</p>
+    <p th:text="'성별: ' + ${gender}">.</p>
+    <p th:text="'생년월일: ' + ${year}+'-'+${month}+'-'+${date}">.</p>
+    <p>관심사 :
+        <span th:if="${trip}" th:text="${trip}+','">.</span>
+        <span th:if="${fashion}" th:text="${fashion}+','">.</span>
+        <span th:if="${food}" th:text="${food}">.</span>
+    </p>
+</body>
+</html>

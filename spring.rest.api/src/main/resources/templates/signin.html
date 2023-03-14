@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<form id="signin_form" method="post" style="margin-right: 20px">
+    <fieldset>
+        아이디 <input type="text" name="id">
+        <br>
+        비밀번호 <input type="password" name="pw">
+        <br>
+        <button type="button" onclick="signin();">로그인</button>
+    </fieldset>
+</form>
+</body>
+<script>
+        var form = document.getElementById('signin_form');
+        function signin() {
+        axios.post(`/axios/signin`, {
+        id: form.id.value,
+        pw: form.pw.value,
+        })
+        .then((res)=>{
+        console.log(res.data);
+            if(res.data == true) {
+                alert("로그인 완료");
+                window.location.href = "/axios/mypage"
+            } else {
+                alert("아이디/비밀번호를 확인해주세요.");
+            }
+        });
+    }
+</script>
+</html>

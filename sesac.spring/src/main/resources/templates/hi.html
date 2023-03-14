@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1 th:text="${msg}">hi</h1>
+  <br>
+  <p th:utext="${utext}">p태그</p>
+  <br>
+  //태그 안에서 변수로 사용 가능
+  <span th:with="msg2='안녕? ' + ${msg}" th:text="${msg2}"></span>
+  //th:each - 반복하려는 최상위 태그에 적어야 함
+
+</body>
+</html>

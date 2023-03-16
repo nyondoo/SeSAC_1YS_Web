@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글 작성하기</title>
+</head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<body>
+<form id="bull">
+    <input name="title">글제목</input>
+    <input name="author">작성자</input>
+    <hr>
+    <input name="content">글내용</input>
+    <button type="button" onclick="addBull()">등록</button>
+</form>
+</body>
+<script>
+    function addBull() {
+        let form = document.getElementById("bull");
+        let data = {
+            author: form.author.value,
+            title: form.title.value,
+            content: form.content.value
+        }
+        axios.post('/write', data)
+        .then((res) => {
+            console.log(res.data);
+            alert("글 작성 완료!");
+            window.location.href = "/board";
+        });
+    }
+</script>
+</html>

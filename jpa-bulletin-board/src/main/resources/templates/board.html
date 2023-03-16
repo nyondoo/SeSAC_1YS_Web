@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+</head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<body>
+  <table>
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>작성자</th>
+      <th>제목</th>
+      <th>내용</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr th:each="bulletin:${List}">
+        <td th:text="${bulletin.getNo()}">글번호</td>
+        <td th:text="${bulletin.getAuthor()}">작성자</td>
+        <td th:text="${bulletin.getTitle()}">제목</td>
+        <td><button type="button" name="edit" onclick="show(${bulletin.getPublish_id()})">보기</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <a href="/write" >글 작성하기</a>
+</body>
+<script>
+  function show(id) {
+    axios.get("/bulletin", {publish_id: id});
+  }
+</script>
+</html>

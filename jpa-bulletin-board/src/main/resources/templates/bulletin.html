@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 보기</title>
+</head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<body>
+    <form id="bull">
+        <input th:value="${bulletin.getTitle()}" name="title">글제목</input>
+        <input th:value="${bulletin.getAuthor()}" name="author" readonly disabled>작성자</input>
+        <hr>
+        <input th:value="${bulletin.getContent()}" name="content">글내용</input>
+        <input th:value="${bulletin.getPublish_id()}" type="hidden" name="publish_id">
+        <button onclick="edit()">수정</button>
+        <button onclick="delete()">삭제</button>
+    </form>
+</body>
+<script>
+    function edit() {
+        let form = document.getElementById("bull");
+        let data = {
+            publish_id: form.publish_id.value,
+            title: form.title.value,
+            content: form.content.value
+        }
+        axios.post('/bulletin/edit', data)
+        .then(res)=>{
+            console.log(res.data);
+            alert("글 수정 완료!");
+            window.location.href = "/board";
+        }
+    }
+
+    function delete() {
+        let form = document.getElementById("bull");
+        axios.post('/bulletin/delete', {publish_id: form.publish_id.value}
+        .then(res)=>{
+            alert("글 삭제 완료");
+            window.location.href = "/board";
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+</head>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<body>
+<form id="info_form">
+    <input type="text" name="id" th:value="${person.getId()}" readonly disabled>
+이름: <input type="text" name="name" th:value="${person.getName()}">
+<br>
+<input type="password" name="pw">
+<br>
+닉네임: <input type="text" name="nickname" th:value="${person.getNickname()}">
+
+<button type="button" onclick="infoEdit();">수정</button>
+<button type="button" onclick="infoDelete();">회원 탈퇴</button>
+</form>
+</body>
+<script>
+        function infoDelete() {
+        var form = document.getElementById('info_form');
+        axios.post(`/person/info/delete`, {
+        id: form.id.value,
+        })
+        .then((res)=>{
+            alert('탈퇴가 완료되었습니다.');
+            window.location.href = "/person/login"
+        });
+    }
+
+    function infoEdit() {
+        var form = document.getElementById('info_form');
+        axios.post(`/person/info/edit`, {
+        id: form.id.value,
+        name: form.name.value,
+        pw: form.pw.value
+        })
+        .then((res)=>{
+            alert("수정이 완료되었습니다.");
+            window.location.href = "/person/login"
+        });
+    }
+</script>
+</html>

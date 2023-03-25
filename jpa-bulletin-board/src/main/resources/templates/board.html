@@ -18,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-      <tr th:each="bulletin:${List}">
+      <tr th:each="bulletin:${list}">
         <td th:text="${bulletin.getNo()}">글번호</td>
         <td th:text="${bulletin.getAuthor()}">작성자</td>
         <td th:text="${bulletin.getTitle()}">제목</td>

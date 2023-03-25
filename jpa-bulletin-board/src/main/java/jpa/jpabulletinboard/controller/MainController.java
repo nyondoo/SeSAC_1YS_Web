@@ -19,7 +19,7 @@ public class MainController {
 
     @GetMapping("/board")
     public String getBoard(Model model){
-        ArrayList<BoardDTO> bulletinList = mainService.getBulletinList();
+        List<BoardDTO> bulletinList = mainService.getBulletinList();
         model.addAttribute("list", bulletinList);
         return "board";
     }
@@ -40,6 +40,7 @@ public class MainController {
     @PostMapping("/write")
     @ResponseBody
     public String postWrite(@RequestBody BoardDTO add){
+        System.out.println(add.getAuthor());
         BoardEntity board = new BoardEntity();
         board.setAuthor(add.getAuthor());
         board.setTitle(add.getTitle());

@@ -15,9 +15,10 @@ public class MainService {
     @Autowired
     private BoardRepository boardRepository;
 
-    public ArrayList<BoardDTO> getBulletinList(){
+    public List<BoardDTO> getBulletinList(){
         List<BoardEntity> result = boardRepository.findAll();
-        ArrayList<BoardDTO> bulletins = new ArrayList<BoardDTO>();
+        System.out.println(result.size());
+        List<BoardDTO> bulletins = new ArrayList<>();
 
         for(int i=0; i<result.size(); i++){
             BoardDTO bulletin = new BoardDTO();
